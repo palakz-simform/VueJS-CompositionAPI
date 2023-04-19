@@ -73,10 +73,10 @@ export default {
     margin: 10px;
     border-left: 2px solid rgb(35, 177, 172);
     border-top: 2px solid rgb(35, 177, 172);
-     box-shadow: 6px 8px 15px 0 rgba(47, 243, 237, 0.7);
+    box-shadow: 6px 8px 15px 0 rgba(47, 243, 237, 0.7);
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
-    
+
 }
 
 .card-car:hover {
@@ -178,7 +178,7 @@ button[disabled] {
 @media (max-width: 1155px) {
     .card-car {
         width: 300px;
-         box-shadow: 6px 8px 10px 0 rgba(47, 243, 237, 0.7);
+        box-shadow: 6px 8px 10px 0 rgba(47, 243, 237, 0.7);
     }
 
     .heading {
@@ -258,7 +258,7 @@ button[disabled] {
 
 @media (max-width: 500px) {
     .card-car {
-       width: 160px;
+        width: 160px;
     }
 
     .heading h1 {

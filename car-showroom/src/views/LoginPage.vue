@@ -10,12 +10,12 @@
                 <div class="form">
                     <div class="row">
                         <label for="email">Email:</label>
-                        <input type="email" v-model="email" id="email" ref="email" @input="checkEmail">
-                        <div v-show="error_msg_email" class="error">{{ error_msg_email }}</div>
+                        <input type="email" v-model="email" id="email" @input="checkEmail" ref="email_ref">
+                        <div v-show="error_msg_email" ref="email_error" class="error">{{ error_msg_email }}</div>
                     </div>
                     <div class="row row-password">
                         <label for="password">Password:</label>
-                        <input type="password" v-model="password" id="password" ref="password" @input="checkPassword">
+                        <input type="password" v-model="password" id="password" @input="checkPassword" ref="password_ref">
                         <div v-show="error_msg_password" class="error">{{ error_msg_password }}</div>
                     </div>
                     <div class="row row-button">
@@ -27,82 +27,78 @@
     </div>
 </template>
 
-<script>
-import { mapActions } from 'pinia'
+<script setup>
+import { ref } from 'vue'
 import { useUserStore } from '../stores/user'
+const store = useUserStore()
 
-export default {
-    name: 'LoginPage',
-    data() {
-        return {
-            error_msg_email: "",
-            error_msg_password: "",
-            email: "",
-            password: "",
-        }
-    },
-    methods: {
-        ...mapActions(useUserStore, ['logInUser']),
-        clearError(error) {
-            this[`error_msg_${error}`] = "";
-        },
-        getUserData() {
-            return {
-                email: this.email,
-                password: this.password
-            }
-        },
-        login() {
-            this.checkEmail(),
-                this.checkPassword()
-            if (this.checkEmail() && this.checkPassword()) {
-                const data = this.getUserData()
-                this.logInUser(data)
-            }
-        },
-        checkEmail() {
-            if (this.email === "") {
-                const msg = "**Please enter email**"
-                this.showError("email", msg)
-                return false;
-            } else if (this.email !== "") {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(this.email)) {
-                    const msg = "**Please enter valid email**"
-                    this.showError("email", msg)
-                    return false;
-                }
-                this.clearError("email")
-                return true;
-            }
-            this.clearError("email")
-            return true;
-        },
-        checkPassword() {
-            if (this.password === "") {
-                const msg = "**Please enter password**"
-                this.showError("password", msg)
-                return false;
-            } else if (this.password !== "") {
-                const passRegex = /^(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,12}$/;
-                if (!passRegex.test(this.password)) {
-                    const msg = "**Password must be 8-12 characters, 1 number, 1 special character**"
-                    this.showError("password", msg)
-                    return false;
-                }
-                this.clearError("password")
-                return true
-            }
-            this.clearError("password")
-            return true
-        },
-        showError(error, msg) {
-            this[`error_msg_${error}`] = msg;
-            this.$refs[error].focus();
-        }
+const error_msg_email = ref("")
+const error_msg_password = ref("")
+const email = ref("")
+const password = ref("")
+const email_ref = ref(null)
+const password_ref = ref(null)
 
+function clearError(error) {
+    error.value = "";
+}
+
+function getUserData() {
+    return {
+        email: email.value,
+        password: password.value
     }
 }
+function login() {
+    checkEmail(),
+        checkPassword()
+    if (checkEmail() && checkPassword()) {
+        const data = getUserData()
+        store.logInUser(data)
+    }
+}
+
+function checkEmail() {
+    if (email.value === "") {
+        const msg = "**Please enter valid email**"
+        showError(error_msg_email, msg, email_ref)
+        return false;
+    } else {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+            const msg = "**Please enter valid email**"
+
+            showError(error_msg_email, msg, email_ref)
+            return false;
+        }
+        clearError(error_msg_email)
+        return true;
+    }
+
+}
+function checkPassword() {
+    if (password.value === "") {
+        const msg = "**Please enter password**"
+        showError(error_msg_password, msg, password_ref)
+        return false;
+    } else {
+        const passRegex = /^(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,12}$/;
+        if (!passRegex.test(password.value)) {
+            const msg = "**Password must be 8-12 characters, 1 number, 1 special character**"
+            showError(error_msg_password, msg, password_ref)
+            return false;
+        }
+        clearError(error_msg_password)
+        return true;
+    }
+}
+
+
+function showError(error, msg, ref) {
+    error.value = msg,
+        ref.value.focus()
+}
+
 </script>
 
 <style src="../../public/style.css" scoped></style>

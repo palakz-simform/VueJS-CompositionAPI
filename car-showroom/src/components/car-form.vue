@@ -12,23 +12,17 @@
                 <div class="row">
                     <label>Name:</label>
                     <input type="text" v-model="form.name" ref="name" @input="checkName">
-                    <div v-if="error_name">
-                        <p class="error">{{ error_msg }}</p>
-                    </div>
+                    <div v-show="error_msg_name" class="error">{{ error_msg_name }}</div>
                 </div>
                 <div class="row">
                     <label>Image:</label>
                     <input type="url" v-model="form.image" ref="image" @input="checkImage">
-                    <div v-if="error_image">
-                        <p class="error">{{ error_msg }}</p>
-                    </div>
+                    <div v-show="error_msg_image" class="error">{{ error_msg_image }}</div>
                 </div>
                 <div class="row">
                     <label>Description:</label>
                     <textarea v-model="form.description" ref="description" @input="checkDescription"></textarea>
-                    <div v-if="error_description">
-                        <p class="error">{{ error_msg }}</p>
-                    </div>
+                    <div v-show="error_msg_description" class="error">{{ error_msg_description }}</div>
                 </div>
                 <div class="row">
                     <label>Price:</label>
@@ -36,9 +30,7 @@
                         onkeydown="return (event.keyCode !== 107 && event.keyCode !== 109 && event.keyCode !== 69);"
                         @input="checkPrice">
                     <!-- Prevent the user from pressing key : +,-,e -->
-                    <div v-if="error_price">
-                        <p class="error">{{ error_msg }}</p>
-                    </div>
+                    <div v-show="error_msg_price" class="error">{{ error_msg_price }}</div>
                 </div>
                 <button @click="submit" class="submit">{{ addForm === true ? 'Submit' : 'Edit' }}</button>
             </div>
@@ -79,11 +71,10 @@ export default {
     },
     data() {
         return {
-            error_name: false,
-            error_image: false,
-            error_description: false,
-            error_price: false,
-            error_msg: "",
+            error_msg_name: "",
+            error_msg_image: "",
+            error_msg_description: "",
+            error_msg_price: "",
         }
     },
     methods: {
@@ -91,14 +82,12 @@ export default {
         showModalx() {
             this.showModal = false;
         },
-        clearError() {
-            this.error_name = false,
-                this.error_image = false,
-                this.error_description = false,
-                this.error_price = false
+        clearError(error) {
+            this[`error_msg_${error}`] = "";
         },
         submit() {
-            // Form validation    
+            // Form validation  
+            this.checkName(), this.checkImage(), this.checkDescription(), this.checkPrice()
             if (this.checkName() && this.checkImage() && this.checkDescription() && this.checkPrice()) {
                 this.clearError()
                 //  Execute if Add Car
@@ -114,21 +103,21 @@ export default {
             }
         },
         checkName() {
-            this.clearError()
             // Checking that name is not empty and is a string
             if (this.form.name === "" || typeof this.form.name != 'string') {
-                this.showError("name")
-                this.error_msg = "**Please enter name**";
+                const msg = "**Please enter name**"
+                this.showError("name", msg)
                 return false
             }
+            this.clearError("name")
             return true
         },
         checkImage() {
             this.clearError()
             // Checking that image is not empty 
             if (this.form.image === "") {
-                this.showError("image")
-                this.error_msg = "**Please enter image URL**";
+                const msg = "**Please enter image URL**"
+                this.showError("image", msg)
                 return false
             }
             // If image is not empty, checking that the input is an URL
@@ -136,46 +125,50 @@ export default {
                 const url = this.form.image;
                 const regex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
                 if (!regex.test(url)) {
-                    this.showError("image")
-                    this.error_msg = "**Please enter valid image URL**";
+                    const msg = "**Please enter valid image URL**"
+                    this.showError("image", msg)
                     return false
                 }
+                this.clearError("image")
                 return true
             }
+            this.clearError("image")
             return true
         },
         checkDescription() {
             this.clearError()
             // Checking that the description is not empty
             if (this.form.description === "") {
-                this.showError("description")
-                this.error_msg = "**Please enter description**";
+                const msg = "**Please enter description**"
+                this.showError("description", msg)
                 return false
             }
             // If the description is not empty, checking that the no. of characters is between 30-120
             else if (this.form.description.length < 30 || this.form.description.length > 120 || typeof this.form.description != 'string') {
-                this.showError("description")
-                this.error_msg = "**Description must be 30-120 characters long**"
+                const msg = "**Description must be 30-120 characters long**"
+                this.showError("description", msg)
                 return false
             }
+            this.clearError("description")
             return true
         },
         checkPrice() {
             this.clearError()
             // checking that the price is not empty
             if (this.form.price === "") {
-                this.showError("price")
-                this.error_msg = "**Please enter price**"
+                const msg = "**Please enter price**"
+                this.showError("price", msg)
                 return false
             }
+            this.clearError("price")
             return true
         },
         // function to alert data after submitting the form
         alertData() {
             alert((this.addForm == true ? 'Created' : 'Edited') + ' data: \n\nName: ' + this.form.name + '\n\nImage:' + this.form.image + '\n\nDescription :' + this.form.description + '\n\nPrice Rs.:' + this.form.price)
         },
-        showError(error) {
-            this[`error_${error}`] = true;
+        showError(error, msg) {
+            this[`error_msg_${error}`] = msg;
             this.$refs[error].focus();
         }
     },
@@ -196,9 +189,6 @@ h1 {
     color: rgb(35, 177, 172)
 }
 
-/* h1:hover {
-    color: rgb(35, 177, 172);
-} */
 button {
     color: white
 }
@@ -232,7 +222,7 @@ label {
 .error {
     color: rgb(220, 73, 73);
     padding-left: 40px;
-    margin-top: 2px;
+    margin-top: 4px;
     margin-bottom: 0px;
 
 }
@@ -253,7 +243,7 @@ textarea {
     padding-left: 5px;
     background-color: black;
     border: 0px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid rgb(255, 255, 255, 0.5);
     color: white;
     font-size: 15px;
 
@@ -267,11 +257,10 @@ textarea {
 textarea:focus,
 input:focus {
     outline: none !important;
-    border-color: rgb(220, 73, 73);
     border: 0px;
     border-bottom: 1px;
-    box-shadow: 0px 2px 0px rgb(220, 73, 73);
-    ;
+    box-shadow: 0px 2px 0px rgb(255, 255, 255);
+    opacity: 1;
 }
 
 .submit {

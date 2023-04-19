@@ -52,7 +52,6 @@ const form = reactive({
     price: ref("")
 })
 if (store.addForm == true) {
-    console.log("here")
     form.name = ""
     form.image = ""
     form.description = ""
@@ -61,13 +60,11 @@ if (store.addForm == true) {
 }
 // Set this data when the form is Edit Car Data
 else if (store.editForm == true) {
-    console.log(store.cardata)
     form.id = store.cardata.id
     form.name = store.cardata.name
     form.image = store.cardata.image
     form.description = store.cardata.description
     form.price = store.cardata.price
-    console.log()
 }
 
 const error_msg_name = ref("")

@@ -32,32 +32,9 @@ import { ref } from 'vue'
 import { useUserStore } from '../stores/user'
 const store = useUserStore()
 
-const error_msg_email = ref("")
-const error_msg_password = ref("")
 const email = ref("")
-const password = ref("")
+const error_msg_email = ref("")
 const email_ref = ref(null)
-const password_ref = ref(null)
-
-function clearError(error) {
-    error.value = "";
-}
-
-function getUserData() {
-    return {
-        email: email.value,
-        password: password.value
-    }
-}
-function login() {
-    checkEmail(),
-        checkPassword()
-    if (checkEmail() && checkPassword()) {
-        const data = getUserData()
-        store.logInUser(data)
-    }
-}
-
 function checkEmail() {
     if (email.value === "") {
         const msg = "**Please enter valid email**"
@@ -74,8 +51,11 @@ function checkEmail() {
         clearError(error_msg_email)
         return true;
     }
-
 }
+
+const error_msg_password = ref("")
+const password = ref("")
+const password_ref = ref(null)
 function checkPassword() {
     if (password.value === "") {
         const msg = "**Please enter password**"
@@ -93,6 +73,25 @@ function checkPassword() {
     }
 }
 
+function login() {
+    checkEmail(),
+        checkPassword()
+    if (checkEmail() && checkPassword()) {
+        const data = getUserData()
+        store.logInUser(data)
+    }
+}
+
+function clearError(error) {
+    error.value = "";
+}
+
+function getUserData() {
+    return {
+        email: email.value,
+        password: password.value
+    }
+}
 
 function showError(error, msg, ref) {
     error.value = msg,

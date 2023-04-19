@@ -2,24 +2,24 @@
     <div class="home">
         <!-- Add Car Button -->
         <div class="add-car-button">
-            <button class="button" @click="addCar()">Add Car</button>
+            <button class="button" @click="store.addCar()">Add Car</button>
         </div>
 
         <!-- Style applied when Add/Edit form is displayed -->
         <transition name="fade">
-            <div class="modal-overlay" v-if="showModal"></div>
+            <div class="modal-overlay" v-if="store.showModal"></div>
         </transition>
 
         <!-- Add/Edit Car Component -->
         <transition name="car-form">
-            <carform v-if="showModal"></carform>
+            <carform v-if="store.showModal"></carform>
         </transition>
 
         <!-- gallery-card.vue component -->
         <div class="car-content">
             <transition-group class="car-card" name="car-card" tag="div" @before-enter="beforeEnter" @enter="enter"
                 @before-leave="beforeLeave" @leave="leave" appear>
-                <div v-for="(item, index) in carCardInfo" :key="item.id" :data-index="index">
+                <div v-for="(item, index) in store.carCardInfo" :key="item.id" :data-index="index">
                     <gallery_card :id="item.id" :car_name="item.name" :image="item.image" :description="item.details"
                         :price="item.price" />
                 </div>
@@ -28,56 +28,45 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import carform from "../components/car-form.vue";
 import gallery_card from "../components/gallery-card.vue";
 import { useCarStore } from "../stores/car";
-import { mapActions, mapWritableState } from "pinia";
 import gsap from 'gsap'
-export default {
-    name: "HomePage",
-    mounted() {
-        this.getData(this.$route.params.id)
-    },
-    components: {
-        carform,
-        gallery_card
-    },
-    computed: {
-        ...mapWritableState(useCarStore, ['carCardInfo', 'showModal'])
-    },
+import { onMounted } from "vue";
 
-    methods: {
-        ...mapActions(useCarStore, ['getData', 'addCar']),
 
-        beforeEnter(el) {
-            el.style.opacity = 0;
-            el.style.transform = 'translateY(100px)'
-        },
-        enter(el, done) {
-            gsap.to(el, {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                onComplete: done,
-                delay: el.dataset.index * 0.1
-            })
-        },
-        beforeLeave(el) {
-            el.style.opacity = 1
-        },
-        leave(el, done) {
-            gsap.to(el, {
-                opacity: 0,
-                x: -250,
-                scaleY: 0.01,
-                duration: 0.3,
-                onComplete: done
-            })
-        }
-    },
 
-};
+onMounted(() => {
+    store.getData()
+})
+
+const store = useCarStore()
+function beforeEnter(el) {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(100px)'
+}
+function enter(el, done) {
+    gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        onComplete: done,
+        delay: el.dataset.index * 0.1
+    })
+}
+function beforeLeave(el) {
+    el.style.opacity = 1
+}
+function leave(el, done) {
+    gsap.to(el, {
+        opacity: 0,
+        x: -250,
+        scaleY: 0.01,
+        duration: 0.3,
+        onComplete: done
+    })
+}
 </script>
 
 <style scoped>

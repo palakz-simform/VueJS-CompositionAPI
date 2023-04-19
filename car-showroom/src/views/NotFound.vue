@@ -5,11 +5,8 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { RouterLink } from 'vue-router'
-export default {
-    name: 'NotFound'
-}
 </script>
 
 <style scoped>

@@ -23,48 +23,36 @@
     </div>
 </template>
 
-<script>
-import { mapActions } from "pinia";
+<script setup>
 import { RouterLink } from "vue-router";
 import { useCarStore } from "../stores/car";
-export default {
-    name: "gallery_card",
-    props: [
-        "id",
-        "name",
-        "image",
-        "formtype",
-        "description",
-        "price",
-        "showModalEdit",
-    ],
-    methods: {
-        ...mapActions(useCarStore, ["showEdit", "deleteCar"]),
-        // Function to get a particular car data
-        getCarData() {
-            return {
-                id: this.id,
-                name: this.name,
-                image: this.image,
-                description: this.description,
-                price: this.price,
-                title: "Edit Car",
-            };
-        },
-        // On clicking edit button emit event 'edit-car'
-        showeditform() {
-            const getData = this.getCarData();
-            this.showEdit(getData);
-        },
-        // On clicking delete button emit event 'delete-car'
-        deleteData() {
-            const cardata = this.getCarData();
-            this.deleteCar(cardata);
-        },
-    },
-
-
-};
+const store = useCarStore()
+const props = defineProps([
+    "id",
+    "name",
+    "image",
+    "formtype",
+    "description",
+    "price",
+    "showModalEdit",
+])
+// On clicking edit button emit event 'edit-car'
+function showeditform() {
+    const getData = {
+        id: props.id,
+        name: props.name,
+        image: props.image,
+        description: props.description,
+        price: props.price,
+        title: "Edit Car",
+    };
+    store.showEdit(getData);
+}
+// On clicking delete button emit event 'delete-car'
+function deleteData() {
+    const cardata = this.getCarData();
+    store.deleteCar(cardata);
+}
 </script>
 
 <style scoped>

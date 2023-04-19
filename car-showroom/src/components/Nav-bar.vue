@@ -9,8 +9,8 @@
             </div>
             <div>
                 <RouterLink class="link" to="/">Home</RouterLink>
-                <span v-if="login == 'true'">
-                    <a class="link" @click="logout">Logout</a>
+                <span v-if="store.login == 'true'">
+                    <a class="link" @click="store.logout">Logout</a>
                 </span>
                 <template v-else>
                     <RouterLink class="link" to="/login">Login</RouterLink>
@@ -21,20 +21,10 @@
     </div>
 </template>
 
-<script>
-import { mapWritableState, mapActions } from "pinia";
+<script setup>
 import { RouterLink } from "vue-router";
 import { useUserStore } from "../stores/user";
-export default {
-    name: "Nav-bar",
-
-    computed: {
-        ...mapWritableState(useUserStore, ["login"]),
-    },
-    methods: {
-        ...mapActions(useUserStore, ["logout"]),
-    }
-};
+const store = useUserStore()
 </script>
 
 <style >

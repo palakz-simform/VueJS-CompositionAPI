@@ -24,14 +24,14 @@
                     <div class="row">
                         <label>Password:</label>
                         <input type="password" v-model="form.password" ref="password_ref" @input="checkPassword">
-                        <div v-if="error_msg_password" class="error">{{ error_msg_password }} </div>
+                        <div v-show="error_msg_password" class="error">{{ error_msg_password }} </div>
                     </div>
                     <!-- Confirm Password -->
                     <div class="row">
                         <label>Confirm Password:</label>
                         <input type="password" v-model="form.confirmPassword" ref="confirmPassword_ref"
                             @input="checkConfirmPassword">
-                        <div v-if="error_msg_confirmPassword" class="error">{{ error_msg_confirmPassword }} </div>
+                        <div v-show="error_msg_confirmPassword" class="error">{{ error_msg_confirmPassword }} </div>
                     </div>
                     <!-- Role -->
                     <div class="row">
@@ -41,7 +41,7 @@
                             <option value="Employee">Employee</option>
                             <option value="Customer">Customer</option>
                         </select>
-                        <div v-if="error_msg_role" class="error">{{ error_msg_role }} </div>
+                        <div v-show="error_msg_role" class="error">{{ error_msg_role }} </div>
                     </div>
                     <!-- Gender -->
 

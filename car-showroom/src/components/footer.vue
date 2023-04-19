@@ -48,10 +48,7 @@
 
     </div>
 </template>
-<script>
-export default {
-    name: "carFooter"
-}
+<script setup>
 </script>
 <style scoped>
 .footer {

@@ -3,7 +3,7 @@
     <div class="form-add-edit-car">
         <div class="modal">
             <div class="heading">
-                <h1>{{ title }}</h1>
+                <h1>{{ store.title }}</h1>
                 <!-- Button to click when the user wants to close the form -->
                 <button class="button" @click="showModalx">x</button>
             </div>
@@ -11,169 +11,167 @@
             <div class="form">
                 <div class="row">
                     <label>Name:</label>
-                    <input type="text" v-model="form.name" ref="name" @input="checkName">
+                    <input type="text" v-model="form.name" ref="name_ref" @input="checkName">
                     <div v-show="error_msg_name" class="error">{{ error_msg_name }}</div>
                 </div>
                 <div class="row">
                     <label>Image:</label>
-                    <input type="url" v-model="form.image" ref="image" @input="checkImage">
+                    <input type="url" v-model="form.image" ref="image_ref" @input="checkImage">
                     <div v-show="error_msg_image" class="error">{{ error_msg_image }}</div>
                 </div>
                 <div class="row">
                     <label>Description:</label>
-                    <textarea v-model="form.description" ref="description" @input="checkDescription"></textarea>
+                    <textarea v-model="form.description" ref="description_ref" @input="checkDescription"></textarea>
                     <div v-show="error_msg_description" class="error">{{ error_msg_description }}</div>
                 </div>
                 <div class="row">
                     <label>Price:</label>
-                    <input type="number" v-model.number="form.price" ref="price"
+                    <input type="number" v-model.number="form.price" ref="price_ref"
                         onkeydown="return (event.keyCode !== 107 && event.keyCode !== 109 && event.keyCode !== 69);"
                         @input="checkPrice">
                     <!-- Prevent the user from pressing key : +,-,e -->
                     <div v-show="error_msg_price" class="error">{{ error_msg_price }}</div>
                 </div>
-                <button @click="submit" class="submit">{{ addForm === true ? 'Submit' : 'Edit' }}</button>
+                <button @click="submit" class="submit">{{ store.addForm === true ? 'Submit' : 'Edit' }}</button>
             </div>
         </div>
     </div>
 </template>
 
-<script>
-import { mapActions, mapWritableState } from 'pinia';
+<script setup>
+import { ref, reactive } from 'vue';
 import { useCarStore } from '../stores/car';
-export default {
-    name: "car-form",
-    props: ["carData"],
-    emits: ['show-model'],
-    computed: {
-        ...mapWritableState(useCarStore, ['showModal', 'cardata', 'title', 'addForm', 'editForm']),
-        form() {
-            // set this data when form is Add Car Data        
-            if (this.addForm == true) {
-                return {
-                    name: '',
-                    image: '',
-                    description: '',
-                    price: ''
-                }
-            }
-            // Set this data when the form is Edit Car Data
-            else if (this.editForm == true) {
-                return {
-                    id: this.cardata.id,
-                    name: this.cardata.name,
-                    image: this.cardata.image,
-                    description: this.cardata.description,
-                    price: this.cardata.price
-                }
-            }
-        }
-    },
-    data() {
-        return {
-            error_msg_name: "",
-            error_msg_image: "",
-            error_msg_description: "",
-            error_msg_price: "",
-        }
-    },
-    methods: {
-        ...mapActions(useCarStore, ['setdata', 'editCarData']),
-        showModalx() {
-            this.showModal = false;
-        },
-        clearError(error) {
-            this[`error_msg_${error}`] = "";
-        },
-        submit() {
-            // Form validation  
-            this.checkName(), this.checkImage(), this.checkDescription(), this.checkPrice()
-            if (this.checkName() && this.checkImage() && this.checkDescription() && this.checkPrice()) {
-                this.clearError()
-                //  Execute if Add Car
-                if (this.addForm == true) {
-                    this.alertData()
-                    this.setdata(this.form)
-                }
-                // Execute id Edit Car
-                else if (this.editForm == true) {
-                    this.alertData()
-                    this.editCarData(this.form)
-                }
-            }
-        },
-        checkName() {
-            // Checking that name is not empty and is a string
-            if (this.form.name === "" || typeof this.form.name != 'string') {
-                const msg = "**Please enter name**"
-                this.showError("name", msg)
-                return false
-            }
-            this.clearError("name")
-            return true
-        },
-        checkImage() {
-            this.clearError()
-            // Checking that image is not empty 
-            if (this.form.image === "") {
-                const msg = "**Please enter image URL**"
-                this.showError("image", msg)
-                return false
-            }
-            // If image is not empty, checking that the input is an URL
-            else if (this.form.image != "") {
-                const url = this.form.image;
-                const regex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
-                if (!regex.test(url)) {
-                    const msg = "**Please enter valid image URL**"
-                    this.showError("image", msg)
-                    return false
-                }
-                this.clearError("image")
-                return true
-            }
-            this.clearError("image")
-            return true
-        },
-        checkDescription() {
-            this.clearError()
-            // Checking that the description is not empty
-            if (this.form.description === "") {
-                const msg = "**Please enter description**"
-                this.showError("description", msg)
-                return false
-            }
-            // If the description is not empty, checking that the no. of characters is between 30-120
-            else if (this.form.description.length < 30 || this.form.description.length > 120 || typeof this.form.description != 'string') {
-                const msg = "**Description must be 30-120 characters long**"
-                this.showError("description", msg)
-                return false
-            }
-            this.clearError("description")
-            return true
-        },
-        checkPrice() {
-            this.clearError()
-            // checking that the price is not empty
-            if (this.form.price === "") {
-                const msg = "**Please enter price**"
-                this.showError("price", msg)
-                return false
-            }
-            this.clearError("price")
-            return true
-        },
-        // function to alert data after submitting the form
-        alertData() {
-            alert((this.addForm == true ? 'Created' : 'Edited') + ' data: \n\nName: ' + this.form.name + '\n\nImage:' + this.form.image + '\n\nDescription :' + this.form.description + '\n\nPrice Rs.:' + this.form.price)
-        },
-        showError(error, msg) {
-            this[`error_msg_${error}`] = msg;
-            this.$refs[error].focus();
-        }
-    },
 
-};
+const store = useCarStore()
+
+const form = reactive({
+    id: ref(store.cardata.id),
+    name: ref(""),
+    image: ref(""),
+    description: ref(""),
+    price: ref("")
+})
+if (store.addForm == true) {
+    console.log("here")
+    form.name = ""
+    form.image = ""
+    form.description = ""
+    form.price = ""
+
+}
+// Set this data when the form is Edit Car Data
+else if (store.editForm == true) {
+    console.log(store.cardata)
+    form.id = store.cardata.id
+    form.name = store.cardata.name
+    form.image = store.cardata.image
+    form.description = store.cardata.description
+    form.price = store.cardata.price
+    console.log()
+}
+
+const error_msg_name = ref("")
+const name_ref = ref(null)
+function checkName() {
+    // Checking that name is not empty and is a string
+    if (form.name === "" || typeof form.name != 'string') {
+        const msg = "**Please enter name**"
+        showError(error_msg_name, msg, name_ref)
+        return false
+    }
+    clearError(error_msg_name)
+    return true
+}
+
+const error_msg_image = ref("")
+const image_ref = ref(null)
+function checkImage() {
+    // Checking that image is not empty 
+    if (form.image === "") {
+        const msg = "**Please enter image URL**"
+        showError(error_msg_image, msg, image_ref)
+        return false
+    }
+    // If image is not empty, checking that the input is an URL
+    else {
+        const url = form.image;
+        const regex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
+        if (!regex.test(url)) {
+            const msg = "**Please enter valid image URL**"
+            showError(error_msg_image, msg, image_ref)
+            return false
+        }
+        clearError(error_msg_image)
+        return true
+    }
+}
+
+const error_msg_description = ref("")
+const description_ref = ref(null)
+function checkDescription() {
+    // Checking that the description is not empty
+    if (form.description === "") {
+        const msg = "**Please enter description**"
+        showError(error_msg_description, msg, description_ref)
+        return false
+    }
+    // If the description is not empty, checking that the no. of characters is between 30-120
+    else if (form.description.length < 30 || form.description.length > 120 || typeof form.description != 'string') {
+        const msg = "**Description must be 30-120 characters long**"
+        showError(error_msg_description, msg, description_ref)
+        return false
+    }
+    clearError(error_msg_description)
+    return true
+}
+
+function submit() {
+    // Form validation  
+    checkName(), checkImage(), checkDescription(), checkPrice()
+    if (checkName() && checkImage() && checkDescription() && checkPrice()) {
+        //  Execute if Add Car
+        if (store.addForm == true) {
+            alertData()
+            store.setdata(form)
+        }
+        // Execute if Edit Car
+        else if (store.editForm == true) {
+            alertData()
+            store.editCarData(form)
+        }
+    }
+}
+
+const error_msg_price = ref("")
+const price_ref = ref(null)
+function checkPrice() {
+    // checking that the price is not empty
+    if (form.price === "") {
+        const msg = "**Please enter price**"
+        showError(error_msg_price, msg, price_ref)
+        return false
+    }
+    clearError(error_msg_price)
+    return true
+}
+function showModalx() {
+    store.showModal = false;
+}
+function clearError(error) {
+    error.value = "";
+}
+
+// function to alert data after submitting the form
+function alertData() {
+    alert((store.addForm == true ? 'Created' : 'Edited') + ' data: \n\nName: ' + form.name + '\n\nImage:' + form.image + '\n\nDescription :' + form.description + '\n\nPrice Rs.:' + form.price)
+}
+function showError(error, msg, ref) {
+    error.value = msg;
+    ref.value.focus()
+}
+
+
+
 </script>
 
 <style scoped>

@@ -3,7 +3,7 @@
     <div class="form-add-edit-car">
         <div class="modal">
             <div class="heading">
-                <h1>{{ store.title }}</h1>
+                <h1>{{ carStore.title }}</h1>
                 <!-- Button to click when the user wants to close the form -->
                 <button class="button" @click="showModalx">x</button>
             </div>
@@ -32,7 +32,7 @@
                     <!-- Prevent the user from pressing key : +,-,e -->
                     <div v-show="error_msg_price" class="error">{{ error_msg_price }}</div>
                 </div>
-                <button @click="submit" class="submit">{{ store.addForm === true ? 'Submit' : 'Edit' }}</button>
+                <button @click="submit" class="submit">{{ carStore.addForm === true ? 'Submit' : 'Edit' }}</button>
             </div>
         </div>
     </div>
@@ -42,16 +42,16 @@
 import { ref, reactive } from 'vue';
 import { useCarStore } from '../stores/car';
 
-const store = useCarStore()
+const carStore = useCarStore()
 
 const form = reactive({
-    id: ref(store.cardata.id),
+    id: ref(carStore.cardata.id),
     name: ref(""),
     image: ref(""),
     description: ref(""),
     price: ref("")
 })
-if (store.addForm == true) {
+if (carStore.addForm == true) {
     form.name = ""
     form.image = ""
     form.description = ""
@@ -59,12 +59,12 @@ if (store.addForm == true) {
 
 }
 // Set this data when the form is Edit Car Data
-else if (store.editForm == true) {
-    form.id = store.cardata.id
-    form.name = store.cardata.name
-    form.image = store.cardata.image
-    form.description = store.cardata.description
-    form.price = store.cardata.price
+else if (carStore.editForm == true) {
+    form.id = carStore.cardata.id
+    form.name = carStore.cardata.name
+    form.image = carStore.cardata.image
+    form.description = carStore.cardata.description
+    form.price = carStore.cardata.price
 }
 
 const error_msg_name = ref("")
@@ -127,14 +127,14 @@ function submit() {
     checkName(), checkImage(), checkDescription(), checkPrice()
     if (checkName() && checkImage() && checkDescription() && checkPrice()) {
         //  Execute if Add Car
-        if (store.addForm == true) {
+        if (carStore.addForm == true) {
             alertData()
-            store.setdata(form)
+            carStore.setdata(form)
         }
         // Execute if Edit Car
-        else if (store.editForm == true) {
+        else if (carStore.editForm == true) {
             alertData()
-            store.editCarData(form)
+            carStore.editCarData(form)
         }
     }
 }
@@ -152,7 +152,7 @@ function checkPrice() {
     return true
 }
 function showModalx() {
-    store.showModal = false;
+    carStore.showModal = false;
 }
 function clearError(error) {
     error.value = "";
@@ -160,7 +160,7 @@ function clearError(error) {
 
 // function to alert data after submitting the form
 function alertData() {
-    alert((store.addForm == true ? 'Created' : 'Edited') + ' data: \n\nName: ' + form.name + '\n\nImage:' + form.image + '\n\nDescription :' + form.description + '\n\nPrice Rs.:' + form.price)
+    alert((carStore.addForm == true ? 'Created' : 'Edited') + ' data: \n\nName: ' + form.name + '\n\nImage:' + form.image + '\n\nDescription :' + form.description + '\n\nPrice Rs.:' + form.price)
 }
 function showError(error, msg, ref) {
     error.value = msg;
@@ -170,6 +170,7 @@ function showError(error, msg, ref) {
 
 
 </script>
+
 
 <style scoped>
 div.modal {
@@ -311,6 +312,5 @@ input:focus {
     .submit {
         margin-left: 100px;
     }
-
 }
 </style>

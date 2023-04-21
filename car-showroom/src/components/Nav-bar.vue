@@ -9,8 +9,8 @@
             </div>
             <div>
                 <RouterLink class="link" to="/">Home</RouterLink>
-                <span v-if="store.login == 'true'">
-                    <a class="link" @click="store.logout">Logout</a>
+                <span v-if="userStore.login == 'true'">
+                    <a class="link" @click="userStore.logout">Logout</a>
                 </span>
                 <template v-else>
                     <RouterLink class="link" to="/login">Login</RouterLink>
@@ -24,7 +24,7 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { useUserStore } from "../stores/user";
-const store = useUserStore()
+const userStore = useUserStore()
 </script>
 
 <style >
@@ -92,7 +92,6 @@ a {
 @media (max-width: 750px) {
     .title h1 {
         margin-left: 20px;
-        font-size: 25px;
     }
 
     .link {

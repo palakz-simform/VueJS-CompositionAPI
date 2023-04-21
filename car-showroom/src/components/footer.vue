@@ -124,7 +124,6 @@ i:hover {
     }
 
     i {
-        color: white;
         padding-right: 20px;
         padding-left: 20px;
     }
@@ -136,10 +135,6 @@ i:hover {
         display: grid;
         grid-template-columns: auto auto;
         font-size: 12px;
-    }
-
-    .row-copyright p {
-        margin-right: px;
     }
 
     .social-row h2 {

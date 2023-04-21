@@ -91,7 +91,7 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { useUserStore } from '../stores/user'
-const store = useUserStore()
+const userStore = useUserStore()
 
 const form = reactive({
     name: '',
@@ -241,7 +241,7 @@ function submit() {
             dob: form.dob,
             gender: form.gender
         }
-        store.registerUser(data)
+        userStore.registerUser(data)
     }
 }
 function clearError(error) {

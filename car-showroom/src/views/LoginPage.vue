@@ -30,7 +30,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useUserStore } from '../stores/user'
-const store = useUserStore()
+const userStore = useUserStore()
 
 const email = ref("")
 const error_msg_email = ref("")
@@ -78,7 +78,7 @@ function login() {
         checkPassword()
     if (checkEmail() && checkPassword()) {
         const data = getUserData()
-        store.logInUser(data)
+        userStore.logInUser(data)
     }
 }
 

@@ -5,19 +5,19 @@
         </div>
         <div class="car-detail">
             <div class="image">
-                <img :src="store.carDetailInfo.image">
+                <img :src="carStore.carDetailInfo.image">
             </div>
             <div class="info">
                 <div class="title">
-                    <h1>{{ store.carDetailInfo.name }}</h1>
+                    <h1>{{ carStore.carDetailInfo.name }}</h1>
                 </div>
                 <div class="description">
                     <h3>Description of Car : </h3>
-                    <p>{{ store.carDetailInfo.details }}</p>
+                    <p>{{ carStore.carDetailInfo.details }}</p>
                 </div>
                 <div class="price">
                     <h3>Price of Car : </h3>
-                    <p>Rs. {{ store.carDetailInfo.price }}</p>
+                    <p>Rs. {{ carStore.carDetailInfo.price }}</p>
                 </div>
             </div>
         </div>
@@ -29,18 +29,17 @@
 import { useCarStore } from '../stores/car'
 import { useRouter, useRoute } from 'vue-router'
 import { onMounted } from 'vue'
-const store = useCarStore()
+const carStore = useCarStore()
 const router = useRouter()
 const route = useRoute()
 onMounted(() => {
-    store.getCarDetail(route.params.id)
+    carStore.getCarDetail(route.params.id)
 })
 const home = () => {
     router.push({
         name: 'home'
     })
 }
-
 </script>
 
 <style scoped>
@@ -137,20 +136,12 @@ img {
 @media (max-width:1500px) {
 
     .car-detail {
-
-        height: 500px;
-        box-shadow: 0px 1px 10px;
         max-width: 800px;
-        display: flex;
-        ;
         box-shadow: 5px 8px 10px 0 rgba(47, 243, 237, 0.7);
-
     }
 
     .image {
         max-width: 400px;
-        align-self: center;
-
     }
 
     img {
@@ -158,38 +149,28 @@ img {
     }
 
     .title {
-
         max-width: 400px;
-        height: 100px;
     }
 
     .description {
         padding-right: 10px;
-        height: 150px
     }
 
     .price {
-
         height: 100px;
     }
 
-    @media(max-width: 810px) {
+    @media(max-width: 850px) {
 
         .car-detail {
             margin-left: 20px;
             margin-right: 30px;
             flex-direction: column;
             height: 700px;
-            display: flex;
-
         }
 
         .image {
-            max-width: 400px;
-            align-self: center;
             padding-top: 20px;
-            ;
-
         }
 
         img {
@@ -199,7 +180,6 @@ img {
         }
 
         .title {
-
             max-width: 100%;
             height: 70px;
         }
@@ -214,6 +194,6 @@ img {
             height: 50px;
         }
     }
-
 }
 </style>
+

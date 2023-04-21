@@ -2,24 +2,24 @@
     <div class="home">
         <!-- Add Car Button -->
         <div class="add-car-button">
-            <button class="button" @click="store.addCar()">Add Car</button>
+            <button class="button" @click="carStore.addCar()">Add Car</button>
         </div>
 
         <!-- Style applied when Add/Edit form is displayed -->
         <transition name="fade">
-            <div class="modal-overlay" v-if="store.showModal"></div>
+            <div class="modal-overlay" v-if="carStore.showModal"></div>
         </transition>
 
         <!-- Add/Edit Car Component -->
         <transition name="car-form">
-            <carform v-if="store.showModal"></carform>
+            <carform v-if="carStore.showModal"></carform>
         </transition>
 
         <!-- gallery-card.vue component -->
         <div class="car-content">
             <transition-group class="car-card" name="car-card" tag="div" @before-enter="beforeEnter" @enter="enter"
                 @before-leave="beforeLeave" @leave="leave" appear>
-                <div v-for="(item, index) in store.carCardInfo" :key="item.id" :data-index="index">
+                <div v-for="(item, index) in carStore.carCardInfo" :key="item.id" :data-index="index">
                     <gallery_card :id="item.id" :name="item.name" :image="item.image" :description="item.details"
                         :price="item.price" />
                 </div>
@@ -35,13 +35,12 @@ import { useCarStore } from "../stores/car";
 import gsap from 'gsap'
 import { onMounted } from "vue";
 
-
+const carStore = useCarStore()
 
 onMounted(() => {
-    store.getData()
+    carStore.getData()
 })
 
-const store = useCarStore()
 function beforeEnter(el) {
     el.style.opacity = 0;
     el.style.transform = 'translateY(100px)'
@@ -81,9 +80,8 @@ function leave(el, done) {
 
 .car-card {
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    gap: 15px;
-    margin-bottom: 10px;
+    grid-template-columns: auto auto auto auto;
+    gap: 45px;
 }
 
 .add-car-button {
@@ -166,71 +164,38 @@ button:hover {
     .car-card {
         display: grid;
         grid-template-columns: auto auto auto auto;
-        gap: 15px;
+        gap: 35px;
     }
 }
 
-@media (max-width: 1540px) {
+@media (max-width: 1640px) {
     .car-card {
-        display: grid;
         grid-template-columns: auto auto auto;
+        gap: 40px;
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 950px) {
     .car-card {
-        display: grid;
         grid-template-columns: auto auto;
-    }
-}
-
-@media (max-width: 800px) {
-
-    .car-card {
-        gap: 20px;
+        gap: 60px;
     }
 
     .add-car-button {
-        display: flex;
-        justify-content: end;
-        padding: 20px;
-        margin-right: 0px;
-    }
-}
-
-@media (max-width: 690px) {
-
-    .car-card {
-        display: grid;
-        grid-template-columns: auto auto;
-        gap: 10px;
-    }
-
-    .add-car-button {
-        display: flex;
-        justify-content: end;
-        padding: 20px;
         margin-right: 0px;
     }
 }
 
 @media (max-width:675px) {
     .car-card {
-        display: grid;
         grid-template-columns: auto auto;
-        gap: 30px;
+        gap: 40px;
     }
 
 }
 
 @media (max-width:550px) {
-    .modal {
-        max-width: 300px;
-    }
-
     .car-card {
-        display: grid;
-        grid-template-columns: auto auto;
         gap: 15px;
     }
 }

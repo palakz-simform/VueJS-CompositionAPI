@@ -70,7 +70,7 @@ select {
 }
 
 input[type="date"] {
-    margin-top: 0px;
+    margin-top: 5px;
     height: 31px;
     background-color: white;
     color: rgb(0, 0, 0);

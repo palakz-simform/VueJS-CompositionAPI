@@ -76,7 +76,7 @@
                     <div class="row">
                         <label>Date of Birth:</label>
                         <input type="date" v-model="form.dob" ref="dob_ref" :max="formattedDate()" min="1923-12-31"
-                            @input="checkDOB">
+                            @input="checkDOB" onkeydown="return false;">
                         <div v-if="error_msg_dob" class="error">{{ error_msg_dob }}</div>
                     </div>
                     <div class="row row-button">

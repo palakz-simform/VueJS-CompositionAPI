@@ -2,19 +2,19 @@
     <div class="title">
         <div class="nav">
             <div>
-                <RouterLink to="/" class="nav-heading">
+                <RouterLink :to="{ name: 'home' }" class="nav-heading">
                     <img src="../assets/car-logo.png" alt="logo" />
                     <h1>Car Gallery</h1>
                 </RouterLink>
             </div>
             <div>
-                <RouterLink class="link" to="/">Home</RouterLink>
-                <span v-if="userStore.login == 'true'">
-                    <a class="link" @click="userStore.logout">Logout</a>
+                <RouterLink class="link" :to="{ name: 'home' }">Home</RouterLink>
+                <span v-if="login == 'true'">
+                    <a class="link" @click="logout">Logout</a>
                 </span>
                 <template v-else>
-                    <RouterLink class="link" to="/login">Login</RouterLink>
-                    <RouterLink class="link link-register" to="/register">Register</RouterLink>
+                    <RouterLink class="link" :to="{ name: 'login' }">Login</RouterLink>
+                    <RouterLink class="link link-register" :to="{ name: 'register' }">Register</RouterLink>
                 </template>
             </div>
         </div>

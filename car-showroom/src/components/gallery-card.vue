@@ -107,15 +107,18 @@ img {
 
 .car-description p {
     font-weight: bold;
-    line-height: 20px;
+    line-height: 30px;
     padding: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .car-description {
     height: 100px;
     width: 340px;
     text-align: center;
-    overflow: hidden;
 }
 
 .btn-car {
@@ -209,6 +212,10 @@ img {
         width: 250px;
     }
 
+    .car-description p {
+        -webkit-line-clamp: 4;
+    }
+
     .car-description {
         width: 250px;
     }
@@ -249,7 +256,7 @@ img {
     }
 
     .car-description {
-        width: 190px;
+        width: 200px;
         text-align: center;
     }
 

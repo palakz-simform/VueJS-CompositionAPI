@@ -44,7 +44,6 @@
                         <div v-show="error_msg_role" class="error">{{ error_msg_role }} </div>
                     </div>
                     <!-- Gender -->
-
                     <div class="gender-class">
                         <div class="row-gender row ">
                             <label>Gender:</label>

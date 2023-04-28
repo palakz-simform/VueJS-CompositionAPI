@@ -6,7 +6,6 @@
                     <h1>Login Form</h1>
                 </div>
                 <!-- Car Add/Edit Form -->
-
                 <div class="form">
                     <div class="row">
                         <label for="email">Email:</label>

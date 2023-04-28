@@ -166,20 +166,10 @@ function showError(error, msg, ref) {
     error.value = msg;
     ref.value.focus()
 }
-
-
-
 </script>
 
 
 <style scoped>
-div.modal {
-    background-color: black;
-    border: 1px solid rgb(35, 177, 172);
-    border-radius: 15px;
-    box-shadow: 8px 10px 5px 0 rgb(35, 177, 172, 0.7);
-}
-
 h1 {
     text-align: center;
     color: rgb(35, 177, 172)
@@ -282,10 +272,12 @@ input:focus {
 .modal {
     width: 100%;
     max-width: 400px;
-    background-color: #fff;
     border-radius: 5px;
     height: 600px;
-
+    background-color: black;
+    border: 1px solid rgb(35, 177, 172);
+    border-radius: 15px;
+    box-shadow: 8px 10px 5px 0 rgb(35, 177, 172, 0.7);
 }
 
 .form-add-edit-car {

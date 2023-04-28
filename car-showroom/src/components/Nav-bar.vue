@@ -4,13 +4,13 @@
             <div>
                 <RouterLink :to="{ name: 'home' }" class="nav-heading">
                     <img src="../assets/car-logo.png" alt="logo" />
-                    <h1>Car Gallery</h1>
+                    <h1 class="logo-name">Car Gallery</h1>
                 </RouterLink>
             </div>
             <div>
                 <RouterLink class="link" :to="{ name: 'home' }">Home</RouterLink>
-                <span v-if="login == 'true'">
-                    <a class="link" @click="logout">Logout</a>
+                <span v-if="userStore.login == 'true'">
+                    <a class="link" @click="userStore.logout">Logout</a>
                 </span>
                 <template v-else>
                     <RouterLink class="link" :to="{ name: 'login' }">Login</RouterLink>
@@ -47,7 +47,7 @@ body {
     margin-top: 3px;
 }
 
-.title h1 {
+.logo-name {
     color: rgb(255, 255, 255);
     font-size: 25px;
     text-shadow: 0 0 3px gray;
@@ -117,7 +117,7 @@ a {
         margin-left: 15px;
     }
 
-    .title h1 {
+    .logo-name {
         display: none;
     }
 }

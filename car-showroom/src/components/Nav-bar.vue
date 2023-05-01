@@ -22,7 +22,6 @@
 </template>
 
 <script setup>
-import { RouterLink } from "vue-router";
 import { useUserStore } from "../stores/user";
 const userStore = useUserStore()
 </script>

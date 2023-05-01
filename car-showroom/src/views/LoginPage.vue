@@ -2,7 +2,7 @@
     <div>
         <form autocomplete="off">
             <div class="login-form">
-                <div class="heading">
+                <div class="form-heading">
                     <h1>Login Form</h1>
                 </div>
                 <!-- Car Add/Edit Form -->
@@ -98,5 +98,3 @@ function showError(error, msg, ref) {
 }
 
 </script>
-
-<style src="../../public/style.css" scoped></style>

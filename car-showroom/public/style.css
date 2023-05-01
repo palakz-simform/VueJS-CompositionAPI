@@ -10,8 +10,9 @@ form {
     box-shadow: 6px 8px 15px 0 rgba(47, 243, 237, 0.7);
 }
 
-h1 {
-    color: rgb(35, 177, 172)
+.form-heading h1 {
+    color: rgb(35, 177, 172);
+    text-align: center;
 }
 
 div.row {

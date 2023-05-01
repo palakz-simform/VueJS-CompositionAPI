@@ -2,7 +2,7 @@
     <div>
         <form>
             <div class="login-form">
-                <div class="heading">
+                <div class="form-heading">
                     <h1>Registration Form</h1>
                 </div>
                 <!-- Car Add/Edit Form -->
@@ -261,4 +261,3 @@ function formattedDate() {
 }
 </script>
 
-<style src="../../public/style.css" scoped></style>

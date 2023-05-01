@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import axios from 'axios'
 
 const routes = [{
   path: '/',
@@ -75,5 +76,4 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-import axios from 'axios'
 export default router

@@ -14,7 +14,7 @@
             <button class="car-edit-btn" @click="showeditform()">
                 <i class="fa-solid fa-pen"></i>
             </button>
-            <RouterLink :to="{ name: 'carDetail', params: { id: id } }"><button class="button-info" :id="id">Info</button>
+            <RouterLink :to="{ name: 'carDetail', params: { id: id } }"><button class="button-info">Info</button>
             </RouterLink>
             <button class="car-delete-btn" @click="deleteData()">
                 <i class="fa-sharp fa-solid fa-trash"></i>

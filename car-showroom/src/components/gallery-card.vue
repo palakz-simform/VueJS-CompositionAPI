@@ -66,7 +66,6 @@ function deleteData() {
     box-shadow: 6px 8px 15px 0 rgba(47, 243, 237, 0.7);
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
-
 }
 
 .card-car:hover {
@@ -109,6 +108,8 @@ img {
     font-weight: bold;
     line-height: 25px;
     padding: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;

@@ -100,7 +100,7 @@ button {
     font-weight: bold;
     border: none;
     border-radius: 10px;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 button:hover {

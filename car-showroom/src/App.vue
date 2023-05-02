@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="car-body">
     <!-- Navigation Global Component -->
     <NavBar />
     <RouterView v-slot="{ Component }">
@@ -27,6 +27,10 @@ else {
 </script>
 
 <style scoped>
+.car-body {
+  background-color: black;
+}
+
 .route-enter-from {
   opacity: 0;
   transform: translateY(100px)

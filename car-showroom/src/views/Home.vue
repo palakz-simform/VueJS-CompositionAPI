@@ -12,7 +12,7 @@
 
         <!-- Add/Edit Car Component -->
         <transition name="car-form">
-            <carform v-if="carStore.showModal"></carform>
+            <CarForm v-if="carStore.showModal"></CarForm>
         </transition>
 
         <!-- gallery-card.vue component -->
@@ -20,7 +20,7 @@
             <transition-group class="car-card" name="car-card" tag="div" @before-enter="beforeEnter" @enter="enter"
                 @before-leave="beforeLeave" @leave="leave" appear>
                 <div v-for="(item, index) in carStore.carCardInfo" :key="item.id" :data-index="index">
-                    <gallery_card :id="item.id" :name="item.name" :image="item.image" :description="item.details"
+                    <GalleryCard :id="item.id" :name="item.name" :image="item.image" :description="item.details"
                         :price="item.price" />
                 </div>
             </transition-group>
@@ -29,8 +29,8 @@
 </template>
 
 <script setup>
-import carform from "../components/car-form.vue";
-import gallery_card from "../components/gallery-card.vue";
+import CarForm from "../components/CarForm.vue";
+import GalleryCard from "../components/GalleryCard.vue";
 import { useCarStore } from "../stores/car";
 import gsap from 'gsap'
 import { onMounted } from "vue";

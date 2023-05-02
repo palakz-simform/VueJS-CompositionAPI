@@ -7,13 +7,13 @@
         <component :is="Component"></component>
       </transition>
     </RouterView>
-    <carFooter />
+    <CarFooter />
   </div>
 </template>
   
 <script setup>
 import { RouterView } from "vue-router";
-import carFooter from "./components/footer.vue"
+import CarFooter from "./components/CarFooter.vue"
 
 if (import.meta.env.VITE_MODE == "production") {
   console.log("You entered Production environment")
@@ -24,9 +24,7 @@ else if (import.meta.env.VITE_MODE == "staging") {
 else {
   console.log("Development environment")
 }
-
 </script>
-
 
 <style scoped>
 .route-enter-from {

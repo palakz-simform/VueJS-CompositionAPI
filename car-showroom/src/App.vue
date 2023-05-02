@@ -1,12 +1,14 @@
 <template>
-  <!-- Navigation Global Component -->
-  <NavBar />
-  <RouterView v-slot="{ Component }">
-    <transition name="route" mode="out-in">
-      <component :is="Component"></component>
-    </transition>
-  </RouterView>
-  <carFooter />
+  <div>
+    <!-- Navigation Global Component -->
+    <NavBar />
+    <RouterView v-slot="{ Component }">
+      <transition name="route" mode="out-in">
+        <component :is="Component"></component>
+      </transition>
+    </RouterView>
+    <carFooter />
+  </div>
 </template>
   
 <script setup>

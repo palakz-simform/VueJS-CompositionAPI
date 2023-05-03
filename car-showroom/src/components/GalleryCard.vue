@@ -37,16 +37,19 @@ const props = defineProps([
     "showModalEdit",
 ])
 // On clicking edit button emit event 'edit-car'
-const getCarData = {
-    id: props.id,
-    name: props.name,
-    image: props.image,
-    description: props.description,
-    price: props.price,
-    title: "Edit Car",
+function getCarData() {
+    return {
+        id: props.id,
+        name: props.name,
+        image: props.image,
+        description: props.description,
+        price: props.price,
+        title: "Edit Car",
+    }
+
 }
 function showeditform() {
-    const getData = getCarData;
+    const getData = getCarData();
     carStore.showEdit(getData);
 }
 // On clicking delete button emit event 'delete-car'

@@ -54,7 +54,7 @@ function showeditform() {
 }
 // On clicking delete button emit event 'delete-car'
 function deleteData() {
-    const cardata = getCarData;
+    const cardata = getCarData();
     carStore.deleteCar(cardata);
 }
 </script>

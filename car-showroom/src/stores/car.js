@@ -19,14 +19,6 @@ export const useCarStore = defineStore('car', () => {
         return carDetail
     })
 
-
-    // fetching data
-    function getData() {
-        axios.get("https://testapi.io/api/dartya/resource/cardata", {
-        }).then((response) => {
-            cars_info.splice(0, cars_info.length, ...response.data.data)
-        })
-    }
     function addCar() {
         showModal.value = true,
             title.value = 'Add Car',
@@ -55,7 +47,12 @@ export const useCarStore = defineStore('car', () => {
     function showEdit(data) {
         editForm.value = true;
         addForm.value = false;
-        Object.assign(cardata, data);
+        cardata.id = data.id
+        cardata.name = data.name
+        cardata.image = data.image
+        cardata.description = data.description
+        cardata.price = data.price
+        cardata.title = data.title
         title.value = cardata.title;
         showModal.value = true;
 
@@ -96,10 +93,21 @@ export const useCarStore = defineStore('car', () => {
             })
         }
     }
+    // fetching data
+    function getData() {
+        axios.get("https://testapi.io/api/dartya/resource/cardata", {
+        }).then((response) => {
+            cars_info.splice(0, cars_info.length, ...response.data.data)
+        })
+    }
+
     function getCarDetail(id) {
         axios.get(`https://testapi.io/api/dartya/resource/cardata/${id}`).then((response) => {
-            Object.assign(carDetail, response.data);
-            // Object.assign() method to update the properties of the reactive object. 
+            carDetail.id = response.data.id
+            carDetail.name = response.data.name
+            carDetail.image = response.data.image
+            carDetail.details = response.data.details
+            carDetail.price = response.data.price
         })
     }
     return {

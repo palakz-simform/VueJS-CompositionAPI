@@ -11,12 +11,12 @@
             <p>{{ description }}</p>
         </div>
         <div class="btn-car">
-            <button class="car-edit-btn" @click="showeditform()">
+            <button class="car-edit-btn" @click="carStore.showEdit(getCarData())">
                 <i class="fa-solid fa-pen"></i>
             </button>
             <RouterLink :to="{ name: 'carDetail', params: { id: id } }"><button class="button-info">Info</button>
             </RouterLink>
-            <button class="car-delete-btn" @click="deleteData()">
+            <button class="car-delete-btn" @click="carStore.deleteCar(getCarData())">
                 <i class="fa-sharp fa-solid fa-trash"></i>
             </button>
         </div>
@@ -48,17 +48,7 @@ function getCarData() {
     }
 
 }
-function showeditform() {
-    const getData = getCarData();
-    carStore.showEdit(getData);
-}
-// On clicking delete button emit event 'delete-car'
-function deleteData() {
-    const cardata = getCarData();
-    carStore.deleteCar(cardata);
-}
 </script>
-
 
 <style scoped>
 .card-car {

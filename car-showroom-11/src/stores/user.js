@@ -6,7 +6,7 @@ import { ref } from 'vue'
 export const useUserStore = defineStore('user', () => {
     const name = ref("")
     const email = ref("")
-    const role = ref("")
+    const role = ref(localStorage.getItem('role'))
     const password = ref("")
     const age = ref("")
     const dob = ref("")
@@ -14,6 +14,7 @@ export const useUserStore = defineStore('user', () => {
     const login = ref(localStorage.getItem('loggedIn'))
 
 
+    console.log(role.value)
 
     async function logInUser(user) {
         try {
@@ -26,6 +27,7 @@ export const useUserStore = defineStore('user', () => {
                     return false
                 }
                 if (userData.password == user.password) {
+                    console.log(userData)
                     name.value = userData.name,
                         email.value = userData.email,
                         role.value = userData.role,
@@ -41,10 +43,12 @@ export const useUserStore = defineStore('user', () => {
                         })
                         localStorage.setItem('token', res.data.token)
                         localStorage.setItem('loggedIn', true)
+                        localStorage.setItem('role', role.value)
                     }
                     catch (err) {
                         localStorage.setItem('token', `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`)
                         localStorage.setItem('loggedIn', true)
+                        localStorage.setItem('role', role.value)
                     }
                     router.push({
                         name: 'home'
@@ -85,6 +89,7 @@ export const useUserStore = defineStore('user', () => {
         if (confirm("Do you really want to log out ?") == true) {
             localStorage.setItem('token', "")
             localStorage.setItem("loggedIn", false)
+            localStorage.setItem('role', "")
             router.push({
                 name: 'login'
             })
@@ -96,6 +101,6 @@ export const useUserStore = defineStore('user', () => {
         }
     }
     return {
-        login, logInUser, registerUser, logout
+        login, logInUser, registerUser, logout, role
     }
 })

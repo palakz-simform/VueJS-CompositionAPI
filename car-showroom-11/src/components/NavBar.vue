@@ -8,9 +8,12 @@
                 </RouterLink>
             </div>
             <div>
-                <RouterLink class="link" :to="{ name: 'home' }">Home</RouterLink>
                 <span v-if="userStore.login == 'true'">
+                    <RouterLink class="link" :to="{ name: 'home' }">Home</RouterLink>
                     <a class="link" @click="userStore.logout">Logout</a>
+                    <span v-if="userStore.role == 'admin'">
+                        <RouterLink class="link" :to="{ name: 'users' }">Users</RouterLink>
+                    </span>
                 </span>
                 <template v-else>
                     <RouterLink class="link" :to="{ name: 'login' }">Login</RouterLink>
@@ -22,8 +25,10 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useUserStore } from "../stores/user";
 const userStore = useUserStore()
+const role = ref(localStorage.getItem('role'))
 </script>
 
 <style >
@@ -75,7 +80,6 @@ body {
 }
 
 a.router-link-exact-active {
-    font-size: 22px;
     color: rgb(35, 177, 172);
 }
 

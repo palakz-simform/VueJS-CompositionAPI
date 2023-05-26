@@ -4,7 +4,6 @@ import router from './router/index'
 import App from './App.vue'
 import NavBar from './components/NavBar.vue'
 
-import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'

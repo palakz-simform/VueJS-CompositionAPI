@@ -31,7 +31,7 @@ const userStore = useUserStore()
 const role = ref(localStorage.getItem('role'))
 </script>
 
-<style >
+<style>
 body {
     margin: 0px;
 }

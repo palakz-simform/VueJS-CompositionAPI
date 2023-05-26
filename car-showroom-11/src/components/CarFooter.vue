@@ -148,5 +148,9 @@ i:hover {
     .common-row p {
         font-size: 12px;
     }
+
+    .fa-linkedin {
+        display: none;
+    }
 }
 </style>

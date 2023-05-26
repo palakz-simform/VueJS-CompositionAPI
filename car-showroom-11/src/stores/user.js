@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import router from '../router/index'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 export const useUserStore = defineStore('user', () => {
     const name = ref("")
@@ -12,10 +12,11 @@ export const useUserStore = defineStore('user', () => {
     const dob = ref("")
     const gender = ref("")
     const login = ref(localStorage.getItem('loggedIn'))
+    const users = ref("")
 
-
-    console.log(role.value)
-
+    const usersInfo = computed(() => {
+        return users
+    })
     async function logInUser(user) {
         try {
             const res = await axios.get('https://testapi.io/api/dartya/resource/users')
@@ -100,7 +101,17 @@ export const useUserStore = defineStore('user', () => {
 
         }
     }
+    async function getUsersData() {
+        try {
+            const res = await axios.get('https://testapi.io/api/dartya/resource/users')
+            users.value = await res.data.data
+            console.log(users.value)
+        }
+        catch (err) {
+            alert("Error occured!! Please try again")
+        }
+    }
     return {
-        login, logInUser, registerUser, logout, role
+        login, logInUser, registerUser, logout, role, users, getUsersData, usersInfo
     }
 })

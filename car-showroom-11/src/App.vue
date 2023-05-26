@@ -1,5 +1,4 @@
 <template>
-  <!-- <User /> -->
   <div class="car-body">
     <!-- Navigation Global Component -->
     <NavBar />
@@ -15,7 +14,6 @@
 <script setup>
 import { RouterView } from "vue-router";
 import CarFooter from "./components/CarFooter.vue"
-// import User from "./components/User.vue"
 
 if (import.meta.env.VITE_MODE == "production") {
   console.log("You entered Production environment")

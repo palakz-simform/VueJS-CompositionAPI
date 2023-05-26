@@ -1,51 +1,50 @@
 <template>
     <div class="user-list">
         <h1 class="user-heading">Users List</h1>
-        <hr style="color: red;" />
-
-        <v-container class="user-container w-75">
-            <v-table fixed-header height="700px" theme="dark" class="mx-15 ">
-                <thead>
-                    <tr>
-                        <th class="text-center abc">
-                            Name
-                        </th>
-                        <th class="text-center">
-                            Email
-                        </th>
-                        <th class="text-center">
-                            Role
-                        </th>
-                        <th class="text-center">
-                            Gender
-                        </th>
-                        <th class="text-center">
-                            Age
-                        </th>
-                        <th class="text-center">
-                            DOB
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="item in usersList" :key="item.name" class="text-center">
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.email }}</td>
-                        <td>{{ item.role }}</td>
-                        <td>{{ item.gender }}</td>
-                        <td>{{ item.age }}</td>
-                        <td>{{ item.dob }}</td>
-                    </tr>
-                </tbody>
-            </v-table>
-        </v-container>
-
+        <hr />
+        <div class="wrapper">
+            <v-container class="w-75">
+                <v-table fixed-header height="700px" theme="dark">
+                    <thead>
+                        <tr>
+                            <th class="text-center">
+                                Name
+                            </th>
+                            <th class="text-center">
+                                Email
+                            </th>
+                            <th class="text-center">
+                                Role
+                            </th>
+                            <th class="text-center">
+                                Gender
+                            </th>
+                            <th class="text-center">
+                                Age
+                            </th>
+                            <th class="text-center">
+                                DOB
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in usersList" :key="item.name" class="text-center">
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.email }}</td>
+                            <td>{{ item.role }}</td>
+                            <td>{{ item.gender }}</td>
+                            <td>{{ item.age }}</td>
+                            <td>{{ item.dob }}</td>
+                        </tr>
+                    </tbody>
+                </v-table>
+            </v-container>
+        </div>
 
     </div>
 </template>
 
 <script setup>
-// import 'vuetify/styles'
 import { onMounted } from 'vue';
 import { useUserStore } from '../stores/user';
 const userStore = useUserStore()
@@ -56,12 +55,18 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@import 'vuetify/styles';
+
 .user-container {
     padding: 0px;
 }
 
 .user-app {
     background-color: black;
+}
+
+.user-wrap {
+    margin: 0 auto;
 }
 
 .user-list {
@@ -71,6 +76,11 @@ onMounted(() => {
 .user-heading {
     color: white;
     text-align: center;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
 }
 
 .v-table.v-table--fixed-header>.v-table__wrapper>table>thead>tr>th {

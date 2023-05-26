@@ -1,0 +1,174 @@
+form {
+    margin: auto;
+    margin-top: 80px;
+    max-width: 500px;
+    box-shadow: 5px 10px 18px #888888;
+    margin-bottom: 190px;
+    border-left: 1px solid rgb(35, 177, 172);
+    border-top: 1px solid rgb(35, 177, 172);
+    border-radius: 15px;
+    box-shadow: 6px 8px 15px 0 rgba(47, 243, 237, 0.7);
+}
+
+.form-heading h1 {
+    color: rgb(35, 177, 172);
+    text-align: center;
+}
+
+div.row {
+    height: 120px;
+    margin-top: 0px;
+}
+
+.form-heading {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+}
+
+.button {
+    height: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+}
+
+label {
+    padding-left: 40px;
+    font-size: 18px;
+    color: white
+}
+
+.error {
+    color: rgb(220, 73, 73);
+    padding-left: 40px;
+    margin-top: 7px;
+    margin-bottom: 0px;
+    margin-right: 30px;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+input,
+textarea,
+select {
+    margin-left: 40px;
+    margin-top: 10px;
+    margin-right: 40px;
+    height: 28px;
+    padding-left: 5px;
+    background-color: black;
+    border: 0px;
+    border-bottom: 1px solid rgb(255, 255, 255, 0.5);
+    color: white;
+    font-size: 15px;
+}
+
+input[type="date"] {
+    margin-top: 5px;
+    height: 31px;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    padding-right: 12px;
+}
+
+input[type="radio"],
+.gender {
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    width: 15px;
+    margin-left: 20px;
+
+}
+
+input[type="radio"]:focus {
+    outline: none !important;
+    border-color: rgb(0, 0, 0);
+    box-shadow: 0 0 0px rgb(0, 0, 0);
+}
+
+.gender-class {
+    height: 70px;
+}
+
+div.row-gender.row {
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+}
+
+.female label,
+.male label {
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.female,
+.male {
+    display: flex;
+    width: 80px;
+}
+
+select {
+    height: 33px;
+}
+
+textarea:focus,
+input:focus {
+    outline: none !important;
+    border: 0px;
+    border-bottom: 1px;
+    box-shadow: 0px 2px 0px rgb(255, 255, 255);
+    opacity: 1;
+}
+
+.submit {
+    width: 100px;
+    height: 35px;
+    background-color: rgb(35, 177, 172);
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    margin-top: 25px;
+    margin-bottom: 40px;
+}
+
+.row-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit:hover {
+    background-color: transparent;
+    color: rgb(35, 177, 172);
+    border: 3px solid rgb(35, 177, 172);
+}
+
+@media (max-width: 550px) {
+    form {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 450px) {
+    form {
+        margin-right: 30px;
+        margin-left: 20px;
+    }
+
+    .female label,
+    .male label {
+        padding-left: 5px;
+        padding-top: 5px;
+    }
+}

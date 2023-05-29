@@ -21,18 +21,20 @@
         "dob": "生年月日"
     },
     "car-form": {
-        "addCar": "車を追加する",
-        "editCar": "車を編集する",
+        "addCar": "車を追加",
+        "editCar": "車を編集",
         "submit": "送信",
-        "edit": "編集"
+        "edit": "編集",
+        "name": "名前",
+        "image": "画像",
+        "description": "説明",
+        "price": "価格"
     },
-
     "detail": {
         "back": "戻る",
         "description": "車の説明",
         "price": "車の価格"
-    },
-    
+    },    
     "userForm": {
         "login-form": "ログインフォーム",
         "register-form": "登録フォーム",

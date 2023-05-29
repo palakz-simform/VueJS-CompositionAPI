@@ -22,7 +22,11 @@
         "addCar": "Add Car",
         "editCar": "Edit Car",
         "submit": "Submit",
-        "edit": "Edit"
+        "edit": "Edit",
+        "name": "Name",
+        "image": "Image",
+        "description": "Description",
+        "price": "Price"
     },
     "detail":{
         "back": "Back",

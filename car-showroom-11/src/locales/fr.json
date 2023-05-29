@@ -23,7 +23,11 @@
         "addCar": "Ajouter une voiture",
         "editCar": "Modifier une voiture",
         "submit": "Soumettre",
-        "edit": "Modifier"
+        "edit": "Modifier",
+        "name": "Nom",
+        "image": "Image",
+        "description": "Description",
+        "price": "Prix"
     },
     "detail": {
         "back": "Retour",

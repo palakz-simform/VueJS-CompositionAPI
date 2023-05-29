@@ -11,6 +11,5 @@
 <style>
 h1 {
     font-size: 100px;
-    ;
 }
 </style>

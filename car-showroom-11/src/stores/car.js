@@ -7,7 +7,6 @@ export const useCarStore = defineStore('car', () => {
     const cars_info = reactive([])
     const showModal = ref(false)
     const addForm = ref(false)
-    const editForm = ref(false)
     const cardata = reactive({})
     const carDetail = reactive({})
 
@@ -43,7 +42,6 @@ export const useCarStore = defineStore('car', () => {
     }
 
     function showEdit(data) {
-        editForm.value = true;
         addForm.value = false;
         cardata.id = data.id
         cardata.name = data.name
@@ -67,7 +65,6 @@ export const useCarStore = defineStore('car', () => {
             } else {
                 alert("Error!!")
             }
-            editForm.value = false
 
         }).catch(error => {
             alert("Error : " + error)
@@ -105,6 +102,6 @@ export const useCarStore = defineStore('car', () => {
         })
     }
     return {
-        cars_info, showModal, addForm, editForm, cardata, carDetail, carCardInfo, carDetailInfo, getData, addCar, setdata, showEdit, editCarData, deleteCar, getCarDetail
+        cars_info, showModal, addForm, cardata, carDetail, carCardInfo, carDetailInfo, getData, addCar, setdata, showEdit, editCarData, deleteCar, getCarDetail
     }
 })

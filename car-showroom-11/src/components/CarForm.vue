@@ -61,7 +61,7 @@ if (carStore.addForm == true) {
 
 }
 // Set this data when the form is Edit Car Data
-else if (carStore.editForm == true) {
+else {
     form.id = carStore.cardata.id
     form.name = carStore.cardata.name
     form.image = carStore.cardata.image

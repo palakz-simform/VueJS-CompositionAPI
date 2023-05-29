@@ -9,8 +9,7 @@ describe('NotFound.vue', () => {
                     $t: (message) => message,
                 }
             }
-
         })
-        expect(wrapper.text()).toContain('Page Not Found');  //The asertion we are making is we expect the text to contain about.
+        expect(wrapper.text()).toContain('Page Not Found!!');
     })
 });

@@ -90,11 +90,9 @@ export const useCarStore = defineStore('car', () => {
         }
     }
     // fetching data
-    function getData() {
-        axios.get("https://testapi.io/api/dartya/resource/cardata", {
-        }).then((response) => {
-            cars_info.splice(0, cars_info.length, ...response.data.data)
-        })
+    async function getData() {
+        const response = await axios.get("https://testapi.io/api/dartya/resource/cardata")
+        cars_info.splice(0, cars_info.length, ...response.data.data)
     }
 
     function getCarDetail(id) {

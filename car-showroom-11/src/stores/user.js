@@ -28,13 +28,13 @@ export const useUserStore = defineStore('user', () => {
                     return false
                 }
                 if (userData.password == user.password) {
-                    name.value = userData.name,
-                        email.value = userData.email,
-                        role.value = userData.role,
-                        password.value = userData.password,
-                        age.value = userData.age,
-                        dob.value = userData.dob,
-                        gender.value = userData.gender
+                    name.value = userData.name
+                    email.value = userData.email
+                    role.value = userData.role
+                    password.value = userData.password
+                    age.value = userData.age
+                    dob.value = userData.dob
+                    gender.value = userData.gender
                     login.value = "true"
                     try {
                         const res = await axios.post('https://reqres.in/api/login', {

@@ -19,7 +19,7 @@
         <div class="car-content">
             <transition-group class="car-card" name="car-card" tag="div" @before-enter="beforeEnter" @enter="enter"
                 @before-leave="beforeLeave" @leave="leave" appear>
-                <div v-for="(item, index) in carStore.carCardInfo" :key="item.id" :data-index="index">
+                <div v-for="(item, index) in carStore.cars_info" :key="item.id" :data-index="index">
                     <GalleryCard :id="item.id" :name="item.name" :image="item.image" :description="item.details"
                         :price="item.price" />
                 </div>
@@ -37,9 +37,8 @@ import { onMounted } from "vue";
 
 const carStore = useCarStore()
 
-onMounted(() => {
-    carStore.getData()
-})
+carStore.getData()
+
 
 function beforeEnter(el) {
     el.style.opacity = 0;

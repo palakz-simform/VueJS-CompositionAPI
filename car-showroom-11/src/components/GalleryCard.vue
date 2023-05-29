@@ -33,7 +33,7 @@ const props = defineProps([
     "name",
     "image",
     "description",
-    "price",
+    "price"
 ])
 // On clicking edit button emit event 'edit-car'
 function getCarData() {

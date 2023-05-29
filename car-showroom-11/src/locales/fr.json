@@ -48,13 +48,5 @@
         "dob": "Date de naissance",
         "login": "Connexion",
         "register": "S'inscrire"
-    },
-
-    "notFound": {
-        "msg": "Page non trouvée !!",
-        "please": "S'il vous plaît",
-        "click": "cliquez",
-        "msg_home": "ici pour accéder à la page d'accueil"
-    }  
-
+    }
 }

@@ -1,9 +1,7 @@
 <template>
     <div class="not-found">
-        <h1>{{ $t('notFound.msg') }}</h1>
-        <p>{{ $t('notFound.please') }} <RouterLink :to="{ name: 'home' }"> <span>{{ $t('notFound.click') }}</span>
-            </RouterLink>
-            {{ $t('notFound.msg_home') }}</p>
+        <h1>Page Not Found!!</h1>
+        <p>Please <RouterLink :to="{ name: 'home' }"> <span>click</span> </RouterLink> here to access the home page</p>
     </div>
 </template>
 

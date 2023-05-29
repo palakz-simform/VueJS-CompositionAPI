@@ -47,14 +47,6 @@
         "dob": "Date of Birth",
         "login": "Login",
         "register": "Register"
-    },
-    "notFound":{
-        "msg": "Page Not Found!!",
-        "please": "Please",
-        "click": "click",
-        "msg_home": "here to access the home page"
-    }
-   
-   
+    }   
    
 }

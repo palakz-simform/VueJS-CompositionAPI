@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="back">
-            <button @click.prevent="home()"><i class="fa-solid fa-arrow-left-long"></i>Back</button>
+            <button @click.prevent="home()"><i class="fa-solid fa-arrow-left-long"></i>{{ $t('detail.back') }}</button>
         </div>
         <div class="car-detail">
             <div class="image">
@@ -12,11 +12,11 @@
                     <h1>{{ carStore.carDetailInfo.name }}</h1>
                 </div>
                 <div class="description">
-                    <h3>Description of Car : </h3>
+                    <h3>{{ $t('detail.description') }} : </h3>
                     <p>{{ carStore.carDetailInfo.details }}</p>
                 </div>
                 <div class="price">
-                    <h3>Price of Car : </h3>
+                    <h3>{{ $t('detail.price') }} : </h3>
                     <p>Rs. {{ carStore.carDetailInfo.price }}</p>
                 </div>
             </div>

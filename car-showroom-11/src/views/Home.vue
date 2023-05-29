@@ -2,7 +2,7 @@
     <div class="home">
         <!-- Add Car Button -->
         <div class="add-car-button">
-            <button class="button" @click="carStore.addCar">Add Car</button>
+            <button class="button" @click="carStore.addCar">{{ $t('home.addCar') }}</button>
         </div>
 
         <!-- Style applied when Add/Edit form is displayed -->

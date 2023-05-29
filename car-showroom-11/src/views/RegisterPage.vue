@@ -3,60 +3,60 @@
         <form>
             <div class="login-form">
                 <div class="form-heading">
-                    <h1>Registration Form</h1>
+                    <h1>{{ $t('userForm.register-form') }}</h1>
                 </div>
                 <!-- Car Add/Edit Form -->
 
                 <div class="form">
                     <!-- Name -->
                     <div class="row">
-                        <label>Name:</label>
+                        <label>{{ $t('userForm.name') }}:</label>
                         <input type="text" v-model="form.name" ref="name_ref" @input="checkName">
                         <div v-show="error_msg_name" class="error">{{ error_msg_name }} </div>
                     </div>
                     <!-- Email -->
                     <div class="row">
-                        <label>Email:</label>
+                        <label>{{ $t('userForm.email') }}:</label>
                         <input type="email" v-model="form.email" ref="email_ref" @input="checkEmail">
                         <div v-show="error_msg_email" class="error">{{ error_msg_email }} </div>
                     </div>
                     <!-- Password -->
                     <div class="row">
-                        <label>Password:</label>
+                        <label>{{ $t('userForm.password') }}:</label>
                         <input type="password" v-model="form.password" ref="password_ref" @input="checkPassword">
                         <div v-show="error_msg_password" class="error">{{ error_msg_password }} </div>
                     </div>
                     <!-- Confirm Password -->
                     <div class="row">
-                        <label>Confirm Password:</label>
+                        <label>{{ $t('userForm.confirmpass') }}:</label>
                         <input type="password" v-model="form.confirmPassword" ref="confirmPassword_ref"
                             @input="checkConfirmPassword">
                         <div v-show="error_msg_confirmPassword" class="error">{{ error_msg_confirmPassword }} </div>
                     </div>
                     <!-- Role -->
                     <div class="row">
-                        <label>Role:</label>
+                        <label>{{ $t('userForm.role') }}:</label>
                         <select v-model="form.role" ref="role_ref" @change="checkRole">
-                            <option value="Admin">Admin</option>
-                            <option value="Employee">Employee</option>
-                            <option value="Customer">Customer</option>
+                            <option value="Admin">{{ $t('userForm.admin') }}</option>
+                            <option value="Employee">{{ $t('userForm.employee') }}</option>
+                            <option value="Customer">{{ $t('userForm.customer') }}</option>
                         </select>
                         <div v-show="error_msg_role" class="error">{{ error_msg_role }} </div>
                     </div>
                     <!-- Gender -->
                     <div class="gender-class">
                         <div class="row-gender row ">
-                            <label>Gender:</label>
+                            <label>{{ $t('userForm.gender') }}:</label>
                             <div class="gender">
                                 <div class="male">
                                     <input type="radio" value="male" id="male" name="gender" v-model="form.gender"
                                         ref="gender_ref" @change="checkGender" />
-                                    <label for="male">Male</label>
+                                    <label for="male">{{ $t('userForm.male') }}</label>
                                 </div>
                                 <div class="female">
                                     <input type="radio" value="female" id="female" name="gender" v-model="form.gender"
                                         ref="gender_ref" @change="checkGender" />
-                                    <label for="female">Female</label>
+                                    <label for="female">{{ $t('userForm.female') }}</label>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                     </div>
                     <!-- Age -->
                     <div class="row">
-                        <label>Age:</label>
+                        <label>{{ $t('userForm.age') }}:</label>
                         <input type="number" v-model.number="form.age" ref="age_ref"
                             onkeydown="return (event.keyCode !== 107 && event.keyCode !== 109 && event.keyCode !== 69);"
                             @input="checkAge">
@@ -73,13 +73,13 @@
                     </div>
                     <!-- DOB -->
                     <div class="row">
-                        <label>Date of Birth:</label>
+                        <label>{{ $t('userForm.dob') }}:</label>
                         <input type="date" v-model="form.dob" ref="dob_ref" :max="formattedDate()" min="1923-12-31"
                             @input="checkDOB" onkeydown="return false;">
                         <div v-if="error_msg_dob" class="error">{{ error_msg_dob }}</div>
                     </div>
                     <div class="row row-button">
-                        <button class="submit" @click.prevent="submit">Register</button>
+                        <button class="submit" @click.prevent="submit">{{ $t('userForm.register') }}</button>
                     </div>
                 </div>
             </div>

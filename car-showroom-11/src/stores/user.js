@@ -28,7 +28,6 @@ export const useUserStore = defineStore('user', () => {
                     return false
                 }
                 if (userData.password == user.password) {
-                    console.log(userData)
                     name.value = userData.name,
                         email.value = userData.email,
                         role.value = userData.role,
@@ -105,7 +104,6 @@ export const useUserStore = defineStore('user', () => {
         try {
             const res = await axios.get('https://testapi.io/api/dartya/resource/users')
             users.value = await res.data.data
-            console.log(users.value)
         }
         catch (err) {
             alert("Error occured!! Please try again")

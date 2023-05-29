@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import i18n from "./includes/i18n";
 import router from './router/index'
 import App from './App.vue'
 import NavBar from './components/NavBar.vue'
@@ -17,5 +18,6 @@ const app = createApp(App)
 app.use(pinia)
 app.use(router)
 app.use(vuetify)
+app.use(i18n)
 app.component('NavBar', NavBar)
 app.mount('#app')

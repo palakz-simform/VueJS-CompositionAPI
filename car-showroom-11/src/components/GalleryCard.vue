@@ -14,7 +14,8 @@
             <button class="car-edit-btn" @click="carStore.showEdit(getCarData())">
                 <i class="fa-solid fa-pen"></i>
             </button>
-            <RouterLink :to="{ name: 'carDetail', params: { id: id } }"><button class="button-info">Info</button>
+            <RouterLink :to="{ name: 'carDetail', params: { id: id } }"><button class="button-info">{{ $t('home.info')
+            }}</button>
             </RouterLink>
             <button class="car-delete-btn" @click="carStore.deleteCar(getCarData())">
                 <i class="fa-sharp fa-solid fa-trash"></i>
@@ -44,7 +45,6 @@ function getCarData() {
         image: props.image,
         description: props.description,
         price: props.price,
-        title: "Edit Car",
     }
 
 }

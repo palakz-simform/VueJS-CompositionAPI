@@ -3,7 +3,7 @@
     <div class="form-add-edit-car">
         <div class="modal">
             <div class="heading">
-                <h1>{{ carStore.title }}</h1>
+                <h1>{{ carStore.addForm == true ? $t('car-form.addCar') : $t('car-form.editCar') }}</h1>
                 <!-- Button to click when the user wants to close the form -->
                 <button class="button" @click="showModalx">x</button>
             </div>
@@ -32,7 +32,9 @@
                     <!-- Prevent the user from pressing key : +,-,e -->
                     <div v-show="error_msg_price" class="error">{{ error_msg_price }}</div>
                 </div>
-                <button @click="submit" class="submit">{{ carStore.addForm === true ? 'Submit' : 'Edit' }}</button>
+                <button @click="submit" class="submit">{{ carStore.addForm === true ? $t('car-form.submit') :
+                    $t('car-form.edit')
+                }}</button>
             </div>
         </div>
     </div>

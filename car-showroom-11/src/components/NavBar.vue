@@ -4,31 +4,38 @@
             <div>
                 <RouterLink :to="{ name: 'home' }" class="nav-heading">
                     <img src="../assets/car-logo.png" alt="logo" />
-                    <h1 class="logo-name">Car Gallery</h1>
+                    <h1 class="logo-name">{{ $t("nav.app-name") }}</h1>
                 </RouterLink>
             </div>
             <div>
                 <span v-if="userStore.login == 'true'">
-                    <RouterLink class="link" :to="{ name: 'home' }">Home</RouterLink>
-                    <a class="link" @click="userStore.logout">Logout</a>
+                    <RouterLink class="link" :to="{ name: 'home' }">{{ $t('nav.home') }}</RouterLink>
                     <span v-if="userStore.role == 'admin'">
-                        <RouterLink class="link" :to="{ name: 'users' }">Users</RouterLink>
+                        <RouterLink class="link" :to="{ name: 'users' }">{{ $t('nav.users') }}</RouterLink>
                     </span>
+                    <a class="link" @click="userStore.logout">{{ $t('nav.logout') }}</a>
                 </span>
                 <template v-else>
-                    <RouterLink class="link" :to="{ name: 'login' }">Login</RouterLink>
-                    <RouterLink class="link link-register" :to="{ name: 'register' }">Register</RouterLink>
+                    <RouterLink class="link" :to="{ name: 'login' }">{{ $t('userForm.login') }}</RouterLink>
+                    <RouterLink class="link link-register" :to="{ name: 'register' }">{{ $t('userForm.register') }}
+                    </RouterLink>
                 </template>
+                <span>
+                    <select id="locale-select" v-model="$i18n.locale">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="fr">Français</option>
+                        <option value="ja">日本</option>
+                    </select>
+                </span>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
 import { useUserStore } from "../stores/user";
 const userStore = useUserStore()
-const role = ref(localStorage.getItem('role'))
 </script>
 
 <style>
@@ -70,6 +77,15 @@ body {
     box-shadow: 0px 1px 30px 1px rgba(255, 255, 255, 0.75);
 }
 
+#locale-select {
+    margin: 0 0 0 0;
+    width: 80px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    border: 1px solid rgb(35, 177, 172);
+}
+
 .link {
     margin-right: 70px;
     color: rgb(255, 255, 255);
@@ -108,10 +124,6 @@ a {
 
     .nav {
         padding-right: 10px;
-    }
-
-    a.router-link-exact-active {
-        font-size: 18px;
     }
 }
 

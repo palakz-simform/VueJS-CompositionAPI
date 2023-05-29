@@ -1,0 +1,60 @@
+{
+    "nav":{
+        "app-name": "Galerie de voitures",
+        "home": "Maison",
+        "logout": "Se déconnecter",
+        "users": "utilisatrices"    
+    },
+   
+    "home":{
+        "addCar" : "Ajouter une voiture",
+        "info": "Info"
+    },
+    "user": {
+        "users_list": "Liste des utilisateurs",
+        "name": "Nom",
+        "email": "Email",
+        "role": "Rôle",
+        "gender": "Genre",
+        "age": "Âge",
+        "dob": "Date de naissance"
+    },
+    "car-form": {
+        "addCar": "Ajouter une voiture",
+        "editCar": "Modifier une voiture",
+        "submit": "Soumettre",
+        "edit": "Modifier"
+    },
+    "detail": {
+        "back": "Retour",
+        "description": "Description de la voiture",
+        "price": "Prix de la voiture"
+    },
+    "userForm": {
+        "login-form": "Formulaire de connexion",
+        "register-form": "Formulaire d'inscription",
+        "name": "Nom",
+        "email": "Email",
+        "password": "Mot de passe",
+        "confirmpass": "Confirmer le mot de passe",
+        "role": "Rôle",
+        "admin": "Admin",
+        "employee": "Employé",
+        "customer": "Client",
+        "gender": "Genre",
+        "male": "Homme",
+        "female": "Femme",
+        "age": "Âge",
+        "dob": "Date de naissance",
+        "login": "Connexion",
+        "register": "S'inscrire"
+    },
+
+    "notFound": {
+        "msg": "Page non trouvée !!",
+        "please": "S'il vous plaît",
+        "click": "cliquez",
+        "msg_home": "ici pour accéder à la page d'accueil"
+    }  
+
+}

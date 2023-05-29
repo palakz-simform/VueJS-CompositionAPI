@@ -9,7 +9,6 @@ export const useCarStore = defineStore('car', () => {
     const addForm = ref(false)
     const editForm = ref(false)
     const cardata = reactive({})
-    const title = ref("")
     const carDetail = reactive({})
 
     const carCardInfo = computed(() => {
@@ -20,9 +19,8 @@ export const useCarStore = defineStore('car', () => {
     })
 
     function addCar() {
-        showModal.value = true,
-            title.value = 'Add Car',
-            addForm.value = true
+        showModal.value = true
+        addForm.value = true
     }
     // Add Car data
     function setdata(formdata) {
@@ -52,8 +50,6 @@ export const useCarStore = defineStore('car', () => {
         cardata.image = data.image
         cardata.description = data.description
         cardata.price = data.price
-        cardata.title = data.title
-        title.value = cardata.title;
         showModal.value = true;
 
     }
@@ -111,6 +107,6 @@ export const useCarStore = defineStore('car', () => {
         })
     }
     return {
-        cars_info, showModal, addForm, editForm, cardata, title, carDetail, carCardInfo, carDetailInfo, getData, addCar, setdata, showEdit, editCarData, deleteCar, getCarDetail
+        cars_info, showModal, addForm, editForm, cardata, carDetail, carCardInfo, carDetailInfo, getData, addCar, setdata, showEdit, editCarData, deleteCar, getCarDetail
     }
 })

@@ -27,74 +27,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useUserStore } from '../stores/user'
 const userStore = useUserStore()
+import { useValidation } from '../composables/useValidation';
 
-const email = ref("")
-const error_msg_email = ref("")
-const email_ref = ref(null)
-function checkEmail() {
-    if (email.value === "") {
-        const msg = "**Please enter valid email**"
-        showError(error_msg_email, msg, email_ref)
-        return false;
-    } else {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email.value)) {
-            const msg = "**Please enter valid email**"
-
-            showError(error_msg_email, msg, email_ref)
-            return false;
-        }
-        clearError(error_msg_email)
-        return true;
-    }
-}
-
-const error_msg_password = ref("")
-const password = ref("")
-const password_ref = ref(null)
-function checkPassword() {
-    if (password.value === "") {
-        const msg = "**Please enter password**"
-        showError(error_msg_password, msg, password_ref)
-        return false;
-    } else {
-        const passRegex = /^(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,12}$/;
-        if (!passRegex.test(password.value)) {
-            const msg = "**Password must be 8-12 characters, 1 number, 1 special character**"
-            showError(error_msg_password, msg, password_ref)
-            return false;
-        }
-        clearError(error_msg_password)
-        return true;
-    }
-}
+const { email, error_msg_email, email_ref, checkEmail,
+    error_msg_password, password, password_ref, checkPassword } = useValidation()
 
 function login() {
-    checkEmail(),
-        checkPassword()
+    checkEmail()
+    checkPassword()
     if (checkEmail() && checkPassword()) {
         const data = getUserData()
         userStore.logInUser(data)
     }
 }
-
-function clearError(error) {
-    error.value = "";
-}
-
 function getUserData() {
     return {
         email: email.value,
         password: password.value
     }
-}
-
-function showError(error, msg, ref) {
-    error.value = msg,
-        ref.value.focus()
 }
 
 </script>

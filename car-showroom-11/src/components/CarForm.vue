@@ -134,7 +134,7 @@ function submit() {
             carStore.setdata(form)
         }
         // Execute if Edit Car
-        else if (carStore.editForm == true) {
+        else {
             alertData()
             carStore.editCarData(form)
         }

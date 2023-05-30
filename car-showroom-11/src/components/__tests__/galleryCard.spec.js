@@ -17,4 +17,5 @@ describe('GalleryCard.vue', () => {
         const heading = wrapper.find('.heading')
         expect(heading.text()).toContain(name);
     })
+
 })

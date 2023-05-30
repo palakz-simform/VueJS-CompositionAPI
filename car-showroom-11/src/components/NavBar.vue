@@ -10,7 +10,7 @@
             <div>
                 <span v-if="userStore.login == 'true'">
                     <RouterLink class="link" :to="{ name: 'home' }">{{ $t('nav.home') }}</RouterLink>
-                    <span v-if="userStore.role == 'admin'">
+                    <span v-if="userStore.role.toLowerCase() == 'admin'">
                         <RouterLink class="link" :to="{ name: 'users' }">{{ $t('nav.users') }}</RouterLink>
                     </span>
                     <a class="link" @click="userStore.logout">{{ $t('nav.logout') }}</a>
@@ -84,6 +84,7 @@ body {
     background-color: black;
     color: white;
     border: 1px solid rgb(35, 177, 172);
+    font-weight: bold;
 }
 
 .link {
@@ -135,5 +136,26 @@ a {
     .logo-name {
         display: none;
     }
+
+    #locale-select {
+        width: 80px;
+        height: 25px;
+        font-size: 13px;
+        font-weight: bold;
+    }
+}
+
+@media (max-width: 420px) {
+    .nav img {
+        height: 40px;
+        margin-left: 10px;
+        border: none;
+    }
+
+    .link {
+        margin-right: 10px;
+        font-size: 15px;
+    }
+
 }
 </style>

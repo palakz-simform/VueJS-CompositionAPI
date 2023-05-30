@@ -285,4 +285,34 @@ img {
         width: 160px;
     }
 }
+
+@media (max-width: 390px) {
+    .card-car {
+        width: 120px;
+        height: 320px;
+    }
+
+    .car-image {
+        width: 120px;
+        height: 100px;
+    }
+
+    img {
+        width: 120px;
+        height: 100px;
+    }
+
+    .car-description {
+        width: 120px;
+    }
+
+    .btn-car {
+        width: 120px;
+    }
+
+    .button-info {
+        width: 35px;
+        height: 35px;
+    }
+}
 </style>

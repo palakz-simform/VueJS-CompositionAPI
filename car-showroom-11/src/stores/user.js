@@ -19,7 +19,7 @@ export const useUserStore = defineStore('user', () => {
     })
     async function logInUser(user) {
         try {
-            const res = await axios.get('users')
+            const res = await axios.get(`${import.meta.env.BASE_URL}users`)
             const data = await res.data.data
             if (res.status == 200) {
                 const userData = data.find(udata => udata.email == user.email)
@@ -27,35 +27,37 @@ export const useUserStore = defineStore('user', () => {
                     alert("Invalid Email!! Please try again")
                     return false
                 }
-                if (userData.password == user.password) {
-                    name.value = userData.name
-                    email.value = userData.email
-                    role.value = userData.role
-                    password.value = userData.password
-                    age.value = userData.age
-                    dob.value = userData.dob
-                    gender.value = userData.gender
-                    login.value = "true"
-                    try {
-                        const res = await axios.post('https://reqres.in/api/login', {
-                            email: "eve.holt@reqres.in",
-                            password: "cityslicka"
-                        })
-                        localStorage.setItem('token', res.data.token)
-                        localStorage.setItem('loggedIn', true)
-                        localStorage.setItem('role', role.value)
-                    }
-                    catch (err) {
-                        localStorage.setItem('token', `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`)
-                        localStorage.setItem('loggedIn', true)
-                        localStorage.setItem('role', role.value)
-                    }
-                    router.push({
-                        name: 'home'
-                    })
-                }
                 else {
-                    alert("Invalid Password!! Please try again")
+                    if (userData.password == user.password) {
+                        name.value = userData.name
+                        email.value = userData.email
+                        role.value = userData.role
+                        password.value = userData.password
+                        age.value = userData.age
+                        dob.value = userData.dob
+                        gender.value = userData.gender
+                        login.value = "true"
+                        try {
+                            const res = await axios.post('https://reqres.in/api/login', {
+                                email: "eve.holt@reqres.in",
+                                password: "cityslicka"
+                            })
+                            localStorage.setItem('token', res.data.token)
+                            localStorage.setItem('loggedIn', true)
+                            localStorage.setItem('role', role.value)
+                        }
+                        catch (err) {
+                            localStorage.setItem('token', `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`)
+                            localStorage.setItem('loggedIn', true)
+                            localStorage.setItem('role', role.value)
+                        }
+                        router.push({
+                            name: 'home'
+                        })
+                    }
+                    else {
+                        alert("Invalid Password!! Please try again")
+                    }
                 }
             }
         }
@@ -65,7 +67,7 @@ export const useUserStore = defineStore('user', () => {
     }
     async function registerUser(data) {
         try {
-            const res = await axios.post('users', {
+            const res = await axios.post(`${import.meta.env.BASE_URL}users`, {
                 name: data.name,
                 email: data.email,
                 role: data.role,
@@ -102,7 +104,7 @@ export const useUserStore = defineStore('user', () => {
     }
     async function getUsersData() {
         try {
-            const res = await axios.get('users')
+            const res = await axios.get(`${import.meta.env.BASE_URL}users`)
             users.value = await res.data.data
         }
         catch (err) {

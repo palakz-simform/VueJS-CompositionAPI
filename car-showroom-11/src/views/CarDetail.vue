@@ -1,26 +1,30 @@
 <template>
     <div>
-        <div class="back">
-            <button @click.prevent="home()"><i class="fa-solid fa-arrow-left-long"></i>{{ $t('detail.back') }}</button>
-        </div>
-        <div class="car-detail">
-            <div class="image">
-                <img :src="carStore.carDetailInfo.image">
+        <div v-if="!carStore.carDetailInfo.name" class="loader"></div>
+        <div v-else>
+            <div class="back">
+                <button @click.prevent="home()"><i class="fa-solid fa-arrow-left-long"></i>{{ $t('detail.back') }}</button>
             </div>
-            <div class="info">
-                <div class="title">
-                    <h1>{{ carStore.carDetailInfo.name }}</h1>
+            <div class="car-detail">
+                <div class="image">
+                    <img :src="carStore.carDetailInfo.image">
                 </div>
-                <div class="description">
-                    <h3>{{ $t('detail.description') }} : </h3>
-                    <p>{{ carStore.carDetailInfo.details }}</p>
-                </div>
-                <div class="price">
-                    <h3>{{ $t('detail.price') }} : </h3>
-                    <p>Rs. {{ carStore.carDetailInfo.price }}</p>
+                <div class="info">
+                    <div class="title">
+                        <h1>{{ carStore.carDetailInfo.name }}</h1>
+                    </div>
+                    <div class="description">
+                        <h3>{{ $t('detail.description') }} : </h3>
+                        <p>{{ carStore.carDetailInfo.details }}</p>
+                    </div>
+                    <div class="price">
+                        <h3>{{ $t('detail.price') }} : </h3>
+                        <p>Rs. {{ carStore.carDetailInfo.price }}</p>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -28,7 +32,7 @@
 
 import { useCarStore } from '../stores/car'
 import { useRouter, useRoute } from 'vue-router'
-import { onMounted } from 'vue'
+import { onMounted, onBeforeUnmount } from 'vue'
 const carStore = useCarStore()
 const router = useRouter()
 const route = useRoute()
@@ -40,6 +44,13 @@ const home = () => {
         name: 'home'
     })
 }
+onBeforeUnmount(() => {
+    carStore.carDetail.id = ""
+    carStore.carDetail.name = ""
+    carStore.carDetail.image = ""
+    carStore.carDetail.details = ""
+    carStore.carDetail.price = ""
+})
 </script>
 
 <style scoped>
@@ -192,6 +203,41 @@ img {
             padding-left: 40px;
             height: 50px;
         }
+    }
+}
+
+
+.loader {
+    margin: 0 auto;
+    margin-top: 200px;
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid rgb(35, 177, 172);
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }
 </style>

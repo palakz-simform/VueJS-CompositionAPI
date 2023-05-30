@@ -37,8 +37,9 @@ import { onMounted } from "vue";
 
 const carStore = useCarStore()
 
-carStore.getData()
-
+onMounted(() => {
+    carStore.getData()
+})
 
 function beforeEnter(el) {
     el.style.opacity = 0;

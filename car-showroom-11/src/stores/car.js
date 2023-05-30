@@ -24,7 +24,7 @@ export const useCarStore = defineStore('car', () => {
     // Add Car data
     function setdata(formdata) {
         showModal.value = false;
-        axios.post('https://testapi.io/api/dartya/resource/cardata/', {
+        axios.post('cardata', {
             name: formdata.name,
             image: formdata.image,
             details: formdata.description,
@@ -54,7 +54,7 @@ export const useCarStore = defineStore('car', () => {
     //Edit Car Data
     function editCarData(data) {
         showModal.value = false;
-        axios.put('https://testapi.io/api/dartya/resource/cardata/' + data.id, {
+        axios.put('cardata/' + data.id, {
             name: data.name,
             image: data.image,
             details: data.description,
@@ -74,7 +74,7 @@ export const useCarStore = defineStore('car', () => {
     //Delete Car
     function deleteCar(data) {
         if (confirm("Do you want to delete this car data ?") == true) {
-            axios.delete('https://testapi.io/api/dartya/resource/cardata/' + data.id).then((res) => {
+            axios.delete('cardata/' + data.id).then((res) => {
                 if (res.status === 204) {
                     getData()
                     alert("Car : " + data.name + " deleted successuflly!")
@@ -88,12 +88,12 @@ export const useCarStore = defineStore('car', () => {
     }
     // fetching data
     async function getData() {
-        const response = await axios.get("https://testapi.io/api/dartya/resource/cardata")
+        const response = await axios.get("cardata")
         cars_info.splice(0, cars_info.length, ...response.data.data)
     }
 
     function getCarDetail(id) {
-        axios.get(`https://testapi.io/api/dartya/resource/cardata/${id}`).then((response) => {
+        axios.get(`cardata/${id}`).then((response) => {
             carDetail.id = response.data.id
             carDetail.name = response.data.name
             carDetail.image = response.data.image

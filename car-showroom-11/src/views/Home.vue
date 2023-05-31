@@ -33,10 +33,9 @@ import CarForm from "../components/CarForm.vue";
 import GalleryCard from "../components/GalleryCard.vue";
 import { useCarStore } from "../stores/car";
 import gsap from 'gsap'
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 const carStore = useCarStore()
-
 onMounted(() => {
     carStore.getData()
 })
@@ -203,6 +202,40 @@ button:hover {
 @media (max-width:400px) {
     .car-card {
         gap: 10px;
+    }
+}
+
+.loader {
+    margin: 0 auto;
+    margin-top: 200px;
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid rgb(35, 177, 172);
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }
 </style>

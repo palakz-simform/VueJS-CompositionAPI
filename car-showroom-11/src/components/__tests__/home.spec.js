@@ -22,6 +22,7 @@ describe('Home.vue', () => {
                 }
             }
         })
+
         const items = component.findAllComponents(GalleryCard)
         expect(items).toHaveLength(car_length)
         items.forEach((wrapper, i) => {

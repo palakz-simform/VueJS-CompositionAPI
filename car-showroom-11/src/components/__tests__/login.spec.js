@@ -15,7 +15,6 @@ describe('Check email', () => {
                 }
             }
         })
-
         const textInput = wrapper.find('input[type="email"]')
         await textInput.setValue('abc@gmail.com')
         expect(wrapper.find('input[type="email"]').element.value).toBe('abc@gmail.com')

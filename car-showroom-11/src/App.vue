@@ -21,9 +21,10 @@ if (import.meta.env.VITE_MODE == "production") {
 else if (import.meta.env.VITE_MODE == "staging") {
   console.log("You entered Staging environment")
 }
-else {
+else if (import.meta.env.VITE_MODE == "development") {
   console.log("Development environment")
 }
+
 </script>
 
 <style scoped>

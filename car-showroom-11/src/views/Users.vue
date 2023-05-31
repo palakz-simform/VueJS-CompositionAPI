@@ -5,7 +5,8 @@
         <div class="wrapper">
             <!-- <v-container class="w-75"> -->
             <v-table fixed-header height="700px" theme="dark" class="w-75">
-                <thead>
+                <div v-if="!usersList" class="loader"></div>
+                <thead v-else>
                     <tr>
                         <th class="text-center">
                             {{ $t('user.name') }}
@@ -29,10 +30,10 @@
                 </thead>
                 <tbody>
                     <tr v-for="item in usersList" :key="item.name" class="text-center">
-                        <td>{{ item.name }}</td>
+                        <td>{{ formattedString(item.name) }}</td>
                         <td>{{ item.email }}</td>
-                        <td>{{ item.role }}</td>
-                        <td>{{ item.gender }}</td>
+                        <td>{{ formattedString(item.role) }}</td>
+                        <td>{{ formattedString(item.gender) }}</td>
                         <td>{{ item.age }}</td>
                         <td>{{ item.dob }}</td>
                     </tr>
@@ -40,18 +41,20 @@
             </v-table>
             <!-- </v-container> -->
         </div>
-
     </div>
 </template>
 
 <script setup>
 import { onMounted } from 'vue';
 import { useUserStore } from '../stores/user';
+import { useCapitalize } from '../composables/useCapitalize'
 const userStore = useUserStore()
 const usersList = userStore.usersInfo
+const { formattedString } = useCapitalize()
 onMounted(() => {
     userStore.getUsersData()
 })
+
 </script>
 
 <style scoped>
@@ -103,5 +106,39 @@ hr {
     margin-bottom: 80px;
     margin-top: 20px;
 
+}
+
+.loader {
+    margin: 0 auto;
+    margin-top: 200px;
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid rgb(35, 177, 172);
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 </style>

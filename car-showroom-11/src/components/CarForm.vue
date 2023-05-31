@@ -178,7 +178,8 @@ h1 {
 }
 
 button {
-    color: white
+    color: white;
+    cursor: pointer;
 }
 
 div.row {

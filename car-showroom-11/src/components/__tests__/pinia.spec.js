@@ -14,6 +14,5 @@ describe("userStore", () => {
         const cars = carStore.cars_info = await res.data.data
         const car_length = cars.length
         expect(carStore.cars_info).toHaveLength(car_length)
-
     })
 })

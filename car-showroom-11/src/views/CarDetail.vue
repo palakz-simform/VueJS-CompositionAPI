@@ -206,7 +206,6 @@ img {
     }
 }
 
-
 .loader {
     margin: 0 auto;
     margin-top: 200px;

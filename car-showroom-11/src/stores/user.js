@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import router from '../router/index'
 import { ref, computed } from 'vue'
+axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
 export const useUserStore = defineStore('user', () => {
     const name = ref("")
@@ -19,7 +20,7 @@ export const useUserStore = defineStore('user', () => {
     })
     async function logInUser(user) {
         try {
-            const res = await axios.get(`${import.meta.env.BASE_URL}users`)
+            const res = await axios.get('users')
             const data = await res.data.data
             if (res.status == 200) {
                 const userData = data.find(udata => udata.email == user.email)
@@ -67,7 +68,7 @@ export const useUserStore = defineStore('user', () => {
     }
     async function registerUser(data) {
         try {
-            const res = await axios.post(`${import.meta.env.BASE_URL}users`, {
+            const res = await axios.post('users', {
                 name: data.name,
                 email: data.email,
                 role: data.role,
@@ -104,7 +105,7 @@ export const useUserStore = defineStore('user', () => {
     }
     async function getUsersData() {
         try {
-            const res = await axios.get(`${import.meta.env.BASE_URL}users`)
+            const res = await axios.get('users')
             users.value = await res.data.data
         }
         catch (err) {

@@ -1,7 +1,9 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import { ref, reactive, computed, isRef, isReactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
+axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
+
 export const useCarStore = defineStore('car', () => {
 
     const cars_info = reactive([])
@@ -24,7 +26,7 @@ export const useCarStore = defineStore('car', () => {
     // Add Car data
     function setdata(formdata) {
         showModal.value = false;
-        axios.post(`${import.meta.env.BASE_URL}cardata`, {
+        axios.post('cardata', {
             name: formdata.name,
             image: formdata.image,
             details: formdata.description,
@@ -54,7 +56,7 @@ export const useCarStore = defineStore('car', () => {
     //Edit Car Data
     function editCarData(data) {
         showModal.value = false;
-        axios.put(`${import.meta.env.BASE_URL}cardata/${data.id}`, {
+        axios.put(`cardata/${data.id}`, {
             name: data.name,
             image: data.image,
             details: data.description,
@@ -74,7 +76,7 @@ export const useCarStore = defineStore('car', () => {
     //Delete Car
     function deleteCar(data) {
         if (confirm("Do you want to delete this car data ?") == true) {
-            axios.delete(`${import.meta.env.BASE_URL}cardata/${data.id}`).then((res) => {
+            axios.delete(`cardata/${data.id}`).then((res) => {
                 if (res.status === 204) {
                     getData()
                     alert("Car : " + data.name + " deleted successuflly!")
@@ -88,12 +90,12 @@ export const useCarStore = defineStore('car', () => {
     }
     // fetching data
     async function getData() {
-        const response = await axios.get(`${import.meta.env.BASE_URL}cardata`)
+        const response = await axios.get('cardata')
         cars_info.splice(0, cars_info.length, ...response.data.data)
     }
 
     function getCarDetail(id) {
-        axios.get(`${import.meta.env.BASE_URL}cardata/${id}`).then((response) => {
+        axios.get(`cardata/${id}`).then((response) => {
             carDetail.id = response.data.id
             carDetail.name = response.data.name
             carDetail.image = response.data.image

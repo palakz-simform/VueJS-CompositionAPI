@@ -16,7 +16,8 @@
         </transition>
 
         <!-- gallery-card.vue component -->
-        <div class="car-content">
+        <div v-if="carStore.cars_info == ''" class="loader"></div>
+        <div class="car-content" v-else>
             <transition-group class="car-card" name="car-card" tag="div" @before-enter="beforeEnter" @enter="enter"
                 @before-leave="beforeLeave" @leave="leave" appear>
                 <div v-for="(item, index) in carStore.cars_info" :key="item.id" :data-index="index">

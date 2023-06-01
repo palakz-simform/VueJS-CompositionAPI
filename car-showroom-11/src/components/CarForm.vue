@@ -10,22 +10,22 @@
             <!-- Car Add/Edit Form -->
             <div class="form">
                 <div class="row">
-                    <label>{{ $t('car-form.name') }}:</label>
+                    <label>{{ $t('car-form.name') }} <span class="required-field">*</span></label>
                     <input type="text" v-model="form.name" ref="name_ref" @input="checkName">
                     <div v-show="error_msg_name" class="error">{{ error_msg_name }}</div>
                 </div>
                 <div class="row">
-                    <label>{{ $t('car-form.image') }}:</label>
+                    <label>{{ $t('car-form.image') }} <span class="required-field">*</span></label>
                     <input type="url" v-model="form.image" ref="image_ref" @input="checkImage">
                     <div v-show="error_msg_image" class="error">{{ error_msg_image }}</div>
                 </div>
                 <div class="row">
-                    <label>{{ $t('car-form.description') }}:</label>
+                    <label>{{ $t('car-form.description') }} <span class="required-field">*</span></label>
                     <textarea v-model="form.description" ref="description_ref" @input="checkDescription"></textarea>
                     <div v-show="error_msg_description" class="error">{{ error_msg_description }}</div>
                 </div>
                 <div class="row">
-                    <label>{{ $t('car-form.price') }}:</label>
+                    <label>{{ $t('car-form.price') }} <span class="required-field">*</span></label>
                     <input type="number" v-model.number="form.price" ref="price_ref"
                         onkeydown="return (event.keyCode !== 107 && event.keyCode !== 109 && event.keyCode !== 69);"
                         @input="checkPrice">

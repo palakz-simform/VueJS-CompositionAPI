@@ -154,6 +154,10 @@ input:focus {
     border: 3px solid rgb(35, 177, 172);
 }
 
+.required-field {
+    color: rgb(220, 73, 73);
+}
+
 @media (max-width: 550px) {
     form {
         max-width: 400px;

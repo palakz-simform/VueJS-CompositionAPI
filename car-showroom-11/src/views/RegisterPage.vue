@@ -10,32 +10,32 @@
                 <div class="form">
                     <!-- Name -->
                     <div class="row">
-                        <label>{{ $t('userForm.name') }}:</label>
+                        <label>{{ $t('userForm.name') }} <span class="required-field">*</span></label>
                         <input type="text" v-model="name" ref="name_ref" @input="checkName">
                         <div v-show="error_msg_name" class="error">{{ error_msg_name }} </div>
                     </div>
                     <!-- Email -->
                     <div class="row">
-                        <label>{{ $t('userForm.email') }}:</label>
+                        <label>{{ $t('userForm.email') }} <span class="required-field">*</span></label>
                         <input type="email" v-model="email" ref="email_ref" @input="checkEmail">
                         <div v-show="error_msg_email" class="error">{{ error_msg_email }} </div>
                     </div>
                     <!-- Password -->
                     <div class="row">
-                        <label>{{ $t('userForm.password') }}:</label>
+                        <label>{{ $t('userForm.password') }} <span class="required-field">*</span></label>
                         <input type="password" v-model="password" ref="password_ref" @input="checkPassword">
                         <div v-show="error_msg_password" class="error">{{ error_msg_password }} </div>
                     </div>
                     <!-- Confirm Password -->
                     <div class="row">
-                        <label>{{ $t('userForm.confirmpass') }}:</label>
+                        <label>{{ $t('userForm.confirmpass') }} <span class="required-field">*</span></label>
                         <input type="password" v-model="confirmPassword" ref="confirmPassword_ref"
                             @input="checkConfirmPassword">
                         <div v-show="error_msg_confirmPassword" class="error">{{ error_msg_confirmPassword }} </div>
                     </div>
                     <!-- Role -->
                     <div class="row">
-                        <label>{{ $t('userForm.role') }}:</label>
+                        <label>{{ $t('userForm.role') }} <span class="required-field">*</span></label>
                         <select v-model="role" ref="role_ref" @change="checkRole">
                             <option value="Admin">{{ $t('userForm.admin') }}</option>
                             <option value="Employee">{{ $t('userForm.employee') }}</option>
@@ -46,7 +46,7 @@
                     <!-- Gender -->
                     <div class="gender-class">
                         <div class="row-gender row ">
-                            <label>{{ $t('userForm.gender') }}:</label>
+                            <label>{{ $t('userForm.gender') }} <span class="required-field">*</span></label>
                             <div class="gender">
                                 <div class="male">
                                     <input type="radio" value="male" id="male" name="gender" v-model="gender"
@@ -64,7 +64,7 @@
                     </div>
                     <!-- Age -->
                     <div class="row">
-                        <label>{{ $t('userForm.age') }}:</label>
+                        <label>{{ $t('userForm.age') }} <span class="required-field">*</span></label>
                         <input type="number" v-model.number="age" ref="age_ref"
                             onkeydown="return (event.keyCode !== 107 && event.keyCode !== 109 && event.keyCode !== 69);"
                             @input="checkAge">
@@ -73,7 +73,7 @@
                     </div>
                     <!-- DOB -->
                     <div class="row">
-                        <label>{{ $t('userForm.dob') }}:</label>
+                        <label>{{ $t('userForm.dob') }} <span class="required-field">*</span></label>
                         <input type="date" v-model="dob" ref="dob_ref" :max=formattedDate min="1923-12-31" @input="checkDOB"
                             onkeydown="return false;">
                         <div v-if="error_msg_dob" class="error">{{ error_msg_dob }}</div>

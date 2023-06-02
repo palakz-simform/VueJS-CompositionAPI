@@ -130,13 +130,13 @@ function submit() {
     if (checkName() && checkImage() && checkDescription() && checkPrice()) {
         //  Execute if Add Car
         if (carStore.addForm == true) {
-            alertData()
-            carStore.setdata(form)
+            const response = carStore.setdata(form)
+            if (response == true) { alertData() }
         }
         // Execute if Edit Car
         else {
-            alertData()
-            carStore.editCarData(form)
+            const response = carStore.editCarData(form)
+            if (response == true) { alertData() }
         }
     }
 }

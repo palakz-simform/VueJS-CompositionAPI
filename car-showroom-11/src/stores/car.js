@@ -25,7 +25,7 @@ export const useCarStore = defineStore('car', () => {
     }
     // Add Car data
     function setdata(formdata) {
-        showModal.value = false;
+
         axios.post('cardata', {
             name: formdata.name,
             image: formdata.image,
@@ -34,12 +34,17 @@ export const useCarStore = defineStore('car', () => {
         }).then((res) => {
             if (res.status === 201) {
                 getData()
+                addForm.value = false
+                showModal.value = false;
+                return true
             } else {
-                alert("Error!!")
+                alert("Error!! Try again")
+                return false
             }
-            addForm.value = false
-        }).catch(error => {
-            alert("Error : " + error)
+
+        }).catch(() => {
+            alert("Error!! Please Try again")
+            return false
         });
     }
 
@@ -55,7 +60,6 @@ export const useCarStore = defineStore('car', () => {
     }
     //Edit Car Data
     function editCarData(data) {
-        showModal.value = false;
         axios.put(`cardata/${data.id}`, {
             name: data.name,
             image: data.image,
@@ -64,12 +68,16 @@ export const useCarStore = defineStore('car', () => {
         }).then((res) => {
             if (res.status === 200) {
                 getData()
+                showModal.value = false;
+                return true
             } else {
                 alert("Error!!")
+                return false
             }
 
-        }).catch(error => {
-            alert("Error : " + error)
+        }).catch(() => {
+            alert("Error Occured !! Please try again. ")
+            return false
         });
 
     }

@@ -10,7 +10,7 @@
             <div>
                 <span v-if="userStore.login == 'true'">
                     <RouterLink class="link" :to="{ name: 'home' }">{{ $t('nav.home') }}</RouterLink>
-                    <span v-if="userStore.role.toLowerCase() == 'admin'">
+                    <span v-if="formattedString(userStore.role) == 'Admin'">
                         <RouterLink class="link" :to="{ name: 'users' }">{{ $t('nav.users') }}</RouterLink>
                     </span>
                     <a class="link" @click="userStore.logout">{{ $t('nav.logout') }}</a>
@@ -36,6 +36,8 @@
 <script setup>
 import { useUserStore } from "../stores/user";
 const userStore = useUserStore()
+import { useCapitalize } from '../composables/useCapitalize'
+const { formattedString } = useCapitalize()
 </script>
 
 <style>

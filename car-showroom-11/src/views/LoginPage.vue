@@ -20,6 +20,10 @@
                     <div class="row row-button">
                         <button @click.prevent="login()" class="submit">{{ $t('userForm.login') }}</button>
                     </div>
+                    <div class="login-register-link">
+                        <div>Not a member ? <RouterLink :to="{ name: 'register' }">Register Here</RouterLink>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

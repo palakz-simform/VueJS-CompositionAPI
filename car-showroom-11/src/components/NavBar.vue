@@ -81,18 +81,19 @@ body {
 
 #locale-select {
     margin: 0 0 0 0;
-    width: 80px;
+    width: 120px;
     height: 30px;
     background-color: black;
     color: white;
     border: 1px solid rgb(35, 177, 172);
     font-weight: bold;
+    font-size: 20px;
 }
 
 .link {
     margin-right: 70px;
     color: rgb(255, 255, 255);
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     width: 60px;
     text-decoration: none;
@@ -124,6 +125,13 @@ a {
     .link-register {
         margin-right: 20px;
     }
+
+    #locale-select {
+        width: 80px;
+        font-size: 15px;
+    }
+
+
 
     .nav {
         padding-right: 10px;

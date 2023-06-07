@@ -2,6 +2,8 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import router from '../router/index'
 import { ref, computed } from 'vue'
+import Swal from 'sweetalert2'
+
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
 export const useUserStore = defineStore('user', () => {
@@ -78,7 +80,8 @@ export const useUserStore = defineStore('user', () => {
                 gender: data.gender
             })
             if (res.status === 201) {
-                alert(' User added Successfully: \n\nName: ' + data.name + '\nEmail: ' + data.email + '\nRole :' + data.role + '\nGender:' + data.gender + '\nAge:' + data.age + '\nDate of Birth:' + data.dob)
+                Swal.fire(' User added Successfully: \n\nName: ' + data.name + '\nEmail: ' + data.email + '\nRole :' + data.role + '\nGender:' + data.gender + '\nAge:' + data.age + '\nDate of Birth:' + data.dob, '', 'success')
+                // alert(' User added Successfully: \n\nName: ' + data.name + '\nEmail: ' + data.email + '\nRole :' + data.role + '\nGender:' + data.gender + '\nAge:' + data.age + '\nDate of Birth:' + data.dob)
                 router.push({
                     name: 'login'
                 })
@@ -89,19 +92,41 @@ export const useUserStore = defineStore('user', () => {
         }
     }
     function logout() {
-        if (confirm("Do you really want to log out ?") == true) {
-            localStorage.setItem('token', "")
-            localStorage.setItem("loggedIn", false)
-            localStorage.setItem('role', "")
-            router.push({
-                name: 'login'
-            })
-            login.value = "false"
-            setTimeout(() => {
-                alert("Logged Out Successfully")
-            }, 500)
+        Swal.fire({
+            title: 'Do you really want to Log out?',
+            showCancelButton: true,
+            confirmButtonText: 'Confirm',
+            confirmButtonColor: "#23B1AC",
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                let timerInterval
+                Swal.fire({
+                    title: 'Logging you out!',
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        localStorage.setItem('token', "")
+                        localStorage.setItem("loggedIn", false)
+                        localStorage.setItem('role', "")
+                        login.value = "false"
+                        router.push({
+                            name: 'login'
+                        })
+                    }
+                })
+            }
+        })
 
-        }
+
     }
     async function getUsersData() {
         try {

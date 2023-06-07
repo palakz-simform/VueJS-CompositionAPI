@@ -3,7 +3,7 @@ import axios from 'axios'
 import { ref, reactive, computed } from 'vue'
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
-
+import Swal from 'sweetalert2'
 export const useCarStore = defineStore('car', () => {
 
     const cars_info = reactive([])
@@ -19,6 +19,13 @@ export const useCarStore = defineStore('car', () => {
         return carDetail
     })
 
+    function alertErrorData() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error Occured!! Please Try again'
+        })
+    }
     function addCar() {
         showModal.value = true
         addForm.value = true
@@ -37,12 +44,14 @@ export const useCarStore = defineStore('car', () => {
                 showModal.value = false;
                 return true
             } else {
-                alert("Error!! Try again")
+                alertErrorData()
+                // alert("Error!! Try again")
                 return false
             }
         }
         catch {
-            alert("Error!! Please Try again")
+            alertErrorData()
+            // alert("Error!! Please Try again")
             return false
         }
     }
@@ -70,12 +79,12 @@ export const useCarStore = defineStore('car', () => {
                 showModal.value = false;
                 return true
             } else {
-                alert("Error!!")
+                alertErrorData()
                 return false
             }
         }
         catch {
-            alert("Error Occured !! Please try again. ")
+            alertErrorData()
             return false
         }
     }
@@ -87,10 +96,10 @@ export const useCarStore = defineStore('car', () => {
                     getData()
                     alert("Car : " + data.name + " deleted successuflly!")
                 } else {
-                    alert("Error!!")
+                    alertErrorData()
                 }
-            }).catch(error => {
-                alert("Error : " + error)
+            }).catch(() => {
+                alertErrorData()
             })
         }
     }

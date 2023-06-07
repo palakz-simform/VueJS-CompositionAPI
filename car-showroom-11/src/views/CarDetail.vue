@@ -171,38 +171,38 @@ img {
     .price {
         height: 100px;
     }
+}
 
-    @media(max-width: 850px) {
+@media(max-width: 850px) {
 
-        .car-detail {
-            margin-left: 20px;
-            margin-right: 30px;
-            flex-direction: column;
-            height: 800px;
-        }
+    .car-detail {
+        margin-left: 20px;
+        margin-right: 30px;
+        flex-direction: column;
+        height: 800px;
+    }
 
-        .image {
-            padding-top: 20px;
-        }
+    .image {
+        padding-top: 20px;
+    }
 
-        img {
-            margin: 0;
-        }
+    img {
+        margin: 0;
+    }
 
-        .title {
-            max-width: 100%;
-            height: 70px;
-        }
+    .title {
+        max-width: 100%;
+        height: 70px;
+    }
 
-        .description {
-            padding-left: 40px;
-            height: 150px
-        }
+    .description {
+        padding-left: 40px;
+        height: 200px
+    }
 
-        .price {
-            padding-left: 40px;
-            height: 50px;
-        }
+    .price {
+        padding-left: 40px;
+        height: 50px;
     }
 }
 
@@ -215,11 +215,9 @@ img {
     width: 60px;
     height: 60px;
     -webkit-animation: spin 2s linear infinite;
-    /* Safari */
     animation: spin 2s linear infinite;
 }
 
-/* Safari */
 @-webkit-keyframes spin {
     0% {
         -webkit-transform: rotate(0deg);

@@ -34,7 +34,6 @@ export const useCarStore = defineStore('car', () => {
             })
             if (response.status === 201) {
                 getData()
-                addForm.value = false
                 showModal.value = false;
                 return true
             } else {

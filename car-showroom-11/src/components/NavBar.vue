@@ -122,7 +122,7 @@ a {
     }
 
     .link-register {
-        margin-right: 0px;
+        margin-right: 20px;
     }
 
     .nav {

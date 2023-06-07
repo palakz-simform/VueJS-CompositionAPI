@@ -175,6 +175,11 @@ a {
     form {
         max-width: 400px;
     }
+
+    .submit {
+        width: 100px;
+    }
+
 }
 
 @media (max-width: 450px) {

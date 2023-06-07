@@ -40,11 +40,11 @@
 </template>
 
 <script setup>
+
 import { ref, reactive } from 'vue';
 import { useCarStore } from '../stores/car';
-
 const carStore = useCarStore()
-
+import Swal from 'sweetalert2'
 const form = reactive({
     id: ref(carStore.cardata.id),
     name: ref(""),
@@ -161,7 +161,7 @@ function clearError(error) {
 
 // function to alert data after submitting the form
 function alertData() {
-    alert((carStore.addForm == true ? 'Created' : 'Edited') + ' data: \n\nName: ' + form.name + '\n\nImage:' + form.image + '\n\nDescription :' + form.description + '\n\nPrice Rs.:' + form.price)
+    Swal.fire((carStore.addForm == true ? 'Car Added Successfully!' : 'Car Data Edited Successfully'), '', 'success')
 }
 function showError(error, msg, ref) {
     error.value = msg;

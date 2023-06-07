@@ -2,39 +2,38 @@
     <!-- Car Form for Edit and Add Car -->
     <div class="form-add-edit-car">
         <div class="modal">
-            <div class="heading">
+            <div class="car-add-edit-heading">
                 <h1>{{ carStore.addForm == true ? $t('car-form.addCar') : $t('car-form.editCar') }}</h1>
                 <!-- Button to click when the user wants to close the form -->
-                <button class="button" @click="showModalx">x</button>
+                <button class="buttonx" @click="showModalx">x</button>
             </div>
             <!-- Car Add/Edit Form -->
-            <div class="form">
-                <div class="row">
+            <div class="form-car">
+                <div class="car-form-row">
                     <label>{{ $t('car-form.name') }} <span class="required-field">*</span></label>
                     <input type="text" v-model="form.name" ref="name_ref" @input="checkName">
-                    <div v-show="error_msg_name" class="error">{{ error_msg_name }}</div>
+                    <div v-show="error_msg_name" class="car-error">{{ error_msg_name }}</div>
                 </div>
-                <div class="row">
+                <div class="car-form-row">
                     <label>{{ $t('car-form.image') }} <span class="required-field">*</span></label>
                     <input type="url" v-model="form.image" ref="image_ref" @input="checkImage">
-                    <div v-show="error_msg_image" class="error">{{ error_msg_image }}</div>
+                    <div v-show="error_msg_image" class="car-error">{{ error_msg_image }}</div>
                 </div>
-                <div class="row">
+                <div class="car-form-row">
                     <label>{{ $t('car-form.description') }} <span class="required-field">*</span></label>
                     <textarea v-model="form.description" ref="description_ref" @input="checkDescription"></textarea>
-                    <div v-show="error_msg_description" class="error">{{ error_msg_description }}</div>
+                    <div v-show="error_msg_description" class="car-error">{{ error_msg_description }}</div>
                 </div>
-                <div class="row">
+                <div class="car-form-row">
                     <label>{{ $t('car-form.price') }} <span class="required-field">*</span></label>
                     <input type="number" v-model.number="form.price" ref="price_ref"
                         onkeydown="return (event.keyCode !== 107 && event.keyCode !== 109 && event.keyCode !== 69);"
                         @input="checkPrice">
                     <!-- Prevent the user from pressing key : +,-,e -->
-                    <div v-show="error_msg_price" class="error">{{ error_msg_price }}</div>
+                    <div v-show="error_msg_price" class="car-error">{{ error_msg_price }}</div>
                 </div>
-                <button @click="submit" class="submit">{{ carStore.addForm === true ? $t('car-form.submit') :
-                    $t('car-form.edit')
-                }}</button>
+                <button @click="submit" class="submit-car">{{ carStore.addForm === true ? $t('car-form.submit') :
+                    $t('car-form.edit') }}</button>
             </div>
         </div>
     </div>
@@ -124,18 +123,18 @@ function checkDescription() {
     return true
 }
 
-function submit() {
+async function submit() {
     // Form validation  
     checkName(), checkImage(), checkDescription(), checkPrice()
     if (checkName() && checkImage() && checkDescription() && checkPrice()) {
         //  Execute if Add Car
         if (carStore.addForm == true) {
-            const response = carStore.setdata(form)
+            const response = await carStore.setdata(form)
             if (response == true) { alertData() }
         }
         // Execute if Edit Car
         else {
-            const response = carStore.editCarData(form)
+            const response = await carStore.editCarData(form)
             if (response == true) { alertData() }
         }
     }
@@ -182,18 +181,18 @@ button {
     cursor: pointer;
 }
 
-div.row {
+div.car-form-row {
     height: 80px;
     margin-top: 0px;
 }
 
-.heading {
+.car-add-edit-heading {
     display: flex;
     justify-content: space-between;
     padding: 1px 10px 5px 130px;
 }
 
-.button {
+.buttonx {
     height: 20px;
     margin-top: 10px;
     font-weight: bold;
@@ -208,7 +207,7 @@ label {
     color: white
 }
 
-.error {
+.car-error {
     color: rgb(220, 73, 73);
     padding-left: 40px;
     margin-top: 4px;
@@ -216,7 +215,7 @@ label {
 
 }
 
-.row {
+.car-form-row {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
@@ -252,7 +251,7 @@ input:focus {
     opacity: 1;
 }
 
-.submit {
+.submit-car {
     width: 100px;
     height: 35px;
     background-color: rgb(35, 177, 172);
@@ -266,7 +265,7 @@ input:focus {
 
 }
 
-.submit:hover {
+.submit-car:hover {
     background-color: transparent;
     color: rgb(35, 177, 172);
     border: 3px solid rgb(35, 177, 172);
@@ -300,11 +299,11 @@ input:focus {
         max-width: 300px;
     }
 
-    .heading {
+    .car-add-edit-heading {
         padding: 1px 10px 5px 90px;
     }
 
-    .submit {
+    .submit-car {
         margin-left: 100px;
     }
 }

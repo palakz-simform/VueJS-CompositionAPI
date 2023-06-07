@@ -24,15 +24,15 @@ export const useCarStore = defineStore('car', () => {
         addForm.value = true
     }
     // Add Car data
-    function setdata(formdata) {
-
-        axios.post('cardata', {
-            name: formdata.name,
-            image: formdata.image,
-            details: formdata.description,
-            price: formdata.price
-        }).then((res) => {
-            if (res.status === 201) {
+    async function setdata(formdata) {
+        try {
+            const response = await axios.post('cardata', {
+                name: formdata.name,
+                image: formdata.image,
+                details: formdata.description,
+                price: formdata.price
+            })
+            if (response.status === 201) {
                 getData()
                 addForm.value = false
                 showModal.value = false;
@@ -41,13 +41,12 @@ export const useCarStore = defineStore('car', () => {
                 alert("Error!! Try again")
                 return false
             }
-
-        }).catch(() => {
+        }
+        catch {
             alert("Error!! Please Try again")
             return false
-        });
+        }
     }
-
     function showEdit(data) {
         addForm.value = false;
         cardata.id = data.id
@@ -59,14 +58,15 @@ export const useCarStore = defineStore('car', () => {
 
     }
     //Edit Car Data
-    function editCarData(data) {
-        axios.put(`cardata/${data.id}`, {
-            name: data.name,
-            image: data.image,
-            details: data.description,
-            price: data.price
-        }).then((res) => {
-            if (res.status === 200) {
+    async function editCarData(data) {
+        try {
+            const response = await axios.put(`cardata/${data.id}`, {
+                name: data.name,
+                image: data.image,
+                details: data.description,
+                price: data.price
+            })
+            if (response.status === 200) {
                 getData()
                 showModal.value = false;
                 return true
@@ -74,12 +74,11 @@ export const useCarStore = defineStore('car', () => {
                 alert("Error!!")
                 return false
             }
-
-        }).catch(() => {
+        }
+        catch {
             alert("Error Occured !! Please try again. ")
             return false
-        });
-
+        }
     }
     //Delete Car
     function deleteCar(data) {

@@ -21,9 +21,11 @@ export const useCarStore = defineStore('car', () => {
 
     function alertErrorData() {
         Swal.fire({
+            position: 'center',
             icon: 'error',
-            title: 'Oops...',
-            text: 'Error Occured!! Please Try again'
+            title: 'Error Occured!! Please Try again',
+            showConfirmButton: false,
+            timer: 1500
         })
     }
     function addCar() {
@@ -45,13 +47,11 @@ export const useCarStore = defineStore('car', () => {
                 return true
             } else {
                 alertErrorData()
-                // alert("Error!! Try again")
                 return false
             }
         }
         catch {
             alertErrorData()
-            // alert("Error!! Please Try again")
             return false
         }
     }
@@ -90,18 +90,37 @@ export const useCarStore = defineStore('car', () => {
     }
     //Delete Car
     function deleteCar(data) {
-        if (confirm("Do you want to delete this car data ?") == true) {
-            axios.delete(`cardata/${data.id}`).then((res) => {
-                if (res.status === 204) {
-                    getData()
-                    alert("Car : " + data.name + " deleted successuflly!")
-                } else {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            iconColor: 'red',
+            showCancelButton: true,
+            confirmButtonColor: '#23B1AC',
+            cancelButtonColor: 'black',
+            confirmButtonText: 'Yes, delete it!',
+            allowOutsideClick: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`cardata/${data.id}`).then((res) => {
+                    if (res.status === 204) {
+                        getData()
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Car Data Deleted Successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    } else {
+                        alertErrorData()
+                    }
+                }).catch(() => {
                     alertErrorData()
-                }
-            }).catch(() => {
-                alertErrorData()
-            })
-        }
+                })
+
+            }
+        })
     }
     // fetching data
     async function getData() {

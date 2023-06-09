@@ -161,7 +161,24 @@ function clearError(error) {
 
 // function to alert data after submitting the form
 function alertData() {
-    Swal.fire((carStore.addForm == true ? 'Car Added Successfully!' : 'Car Data Edited Successfully'), '', 'success')
+    if (carStore.addCar == true) {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Car Added Successfully!',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }
+    else {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Car Data Edited Successfully',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }
 }
 function showError(error, msg, ref) {
     error.value = msg;

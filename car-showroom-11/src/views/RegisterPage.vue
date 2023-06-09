@@ -82,7 +82,9 @@
                         <button class="submit" @click.prevent="submit">{{ $t('userForm.register') }}</button>
                     </div>
                     <div class="login-register-link">
-                        <div>Already a member ? <RouterLink :to="{ name: 'login' }">Login Here</RouterLink>
+                        <div>{{ $t('userForm.alreadyMember') }} ? <RouterLink :to="{ name: 'login' }">{{
+                            $t('userForm.loginHere') }}
+                            </RouterLink>
                         </div>
                     </div>
                 </div>

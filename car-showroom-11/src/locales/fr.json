@@ -51,6 +51,10 @@
         "age": "Âge",
         "dob": "Date de naissance",
         "login": "Connexion",
-        "register": "S'inscrire"
+        "register": "S'inscrire",
+        "notMember": "Non membre",
+        "regHere": "S'inscrire ici",
+        "alreadyMember": "Déjà membre",
+        "loginHere": "Se connecter ici"
     }
 }

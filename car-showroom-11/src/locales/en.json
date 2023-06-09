@@ -50,6 +50,10 @@
         "age": "Age",
         "dob": "Date of Birth",
         "login": "Login",
-        "register": "Register"
+        "register": "Register",
+        "notMember":"Not a member",
+        "regHere": "Register Here",
+        "alreadyMember": "Already a Member",
+        "loginHere" : "Login Here"
     }      
 }

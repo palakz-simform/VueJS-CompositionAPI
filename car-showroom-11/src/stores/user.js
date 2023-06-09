@@ -80,8 +80,13 @@ export const useUserStore = defineStore('user', () => {
                 gender: data.gender
             })
             if (res.status === 201) {
-                Swal.fire(' User added Successfully: \n\nName: ' + data.name + '\nEmail: ' + data.email + '\nRole :' + data.role + '\nGender:' + data.gender + '\nAge:' + data.age + '\nDate of Birth:' + data.dob, '', 'success')
-                // alert(' User added Successfully: \n\nName: ' + data.name + '\nEmail: ' + data.email + '\nRole :' + data.role + '\nGender:' + data.gender + '\nAge:' + data.age + '\nDate of Birth:' + data.dob)
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: ' User added Successfully: \n\nName: ' + data.name + '\nEmail: ' + data.email + '\nRole :' + data.role + '\nGender:' + data.gender + '\nAge:' + data.age + '\nDate of Birth:',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
                 router.push({
                     name: 'login'
                 })

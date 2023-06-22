@@ -3,138 +3,138 @@ import { ref } from "vue"
 export const useValidation = () => {
 
     const email = ref("")
-    const error_msg_email = ref("")
-    const email_ref = ref(null)
+    const errorMsgEmail = ref("")
+    const emailRef = ref(null)
     function checkEmail() {
         if (email.value === "") {
             const msg = "**Please enter valid email**"
-            showError(error_msg_email, msg, email_ref)
+            showError(errorMsgEmail, msg, emailRef)
             return false;
         } else {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email.value)) {
                 const msg = "**Please enter valid email**"
 
-                showError(error_msg_email, msg, email_ref)
+                showError(errorMsgEmail, msg, emailRef)
                 return false;
             }
-            clearError(error_msg_email)
+            clearError(errorMsgEmail)
             return true;
         }
     }
 
-    const error_msg_password = ref("")
+    const errorMsgPassword = ref("")
     const password = ref("")
-    const password_ref = ref(null)
+    const passwordRef = ref(null)
     function checkPassword() {
         if (password.value === "") {
             const msg = "**Please enter password**"
-            showError(error_msg_password, msg, password_ref)
+            showError(errorMsgPassword, msg, passwordRef)
             return false;
         } else {
             const passRegex = /^(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,12}$/;
             if (!passRegex.test(password.value)) {
                 const msg = "**Password must be 8-12 characters, 1 number, 1 special character**"
-                showError(error_msg_password, msg, password_ref)
+                showError(errorMsgPassword, msg, passwordRef)
                 return false;
             }
-            clearError(error_msg_password)
+            clearError(errorMsgPassword)
             return true;
         }
     }
 
     const name = ref("")
-    const error_msg_name = ref("")
-    const name_ref = ref(null)
+    const errorMsgName = ref("")
+    const nameRef = ref(null)
     function checkName() {
         if (name.value === "") {
             const msg = "**Please enter name**"
-            showError(error_msg_name, msg, name_ref)
+            showError(errorMsgName, msg, nameRef)
             return false;
         }
-        clearError(error_msg_name)
+        clearError(errorMsgName)
         return true
     }
 
     const confirmPassword = ref("")
-    const error_msg_confirmPassword = ref("")
-    const confirmPassword_ref = ref(null)
+    const errorMsgConfirmPassword = ref("")
+    const confirmPasswordRef = ref(null)
     function checkConfirmPassword() {
         if (confirmPassword.value === "") {
             const msg = "**Please enter the password again to confirm**"
-            showError(error_msg_confirmPassword, msg, confirmPassword_ref)
+            showError(errorMsgConfirmPassword, msg, confirmPasswordRef)
             return false;
         } else {
             if (password.value !== confirmPassword.value) {
                 const msg = "**Confirm Password does not match the Password field**"
-                showError(error_msg_confirmPassword, msg, confirmPassword_ref)
+                showError(errorMsgConfirmPassword, msg, confirmPasswordRef)
                 return false;
             }
-            clearError(error_msg_confirmPassword)
+            clearError(errorMsgConfirmPassword)
             return true;
         }
     }
 
     const role = ref("")
-    const error_msg_role = ref("")
-    const role_ref = ref(null)
+    const errorMsgRole = ref("")
+    const roleRef = ref(null)
     function checkRole() {
         if (role.value === "") {
             const msg = "**Please choose your role**"
-            showError(error_msg_role, msg, role_ref)
+            showError(errorMsgRole, msg, roleRef)
             return false;
         }
-        clearError(error_msg_role)
+        clearError(errorMsgRole)
         return true;
     }
 
     const gender = ref("")
-    const error_msg_gender = ref("")
-    const gender_ref = ref(null)
+    const errorMsgGender = ref("")
+    const genderRef = ref(null)
     function checkGender() {
         if (gender.value === "") {
             const msg = "**Please choose your gender**"
-            showError(error_msg_gender, msg, gender_ref)
+            showError(errorMsgGender, msg, genderRef)
             return false;
         }
-        clearError(error_msg_gender)
+        clearError(errorMsgGender)
         return true
     }
 
     const age = ref("")
-    const error_msg_age = ref("")
-    const age_ref = ref(null)
+    const errorMsgAge = ref("")
+    const ageref = ref(null)
     function checkAge() {
         if (age.value === "") {
             const msg = "**Please enter your age**"
-            showError(error_msg_age, msg, age_ref)
+            showError(errorMsgAge, msg, ageref)
             return false;
         } else {
             const person_age = age.value
             if (typeof age.value != 'number' || person_age.toString().includes(".")) {
                 const msg = "**Age should be whole number**"
-                showError(error_msg_age, msg, age_ref)
+                showError(errorMsgAge, msg, ageref)
                 return false
             } else if (age.value < 18 || age.value > 100) {
                 const msg = "**Age should be between 18-100**"
-                showError(error_msg_age, msg, age_ref)
+                showError(errorMsgAge, msg, ageref)
                 return false
             }
-            clearError(error_msg_age)
+            clearError(errorMsgAge)
             return true
         }
     }
 
     const dob = ref("")
-    const error_msg_dob = ref("")
-    const dob_ref = ref(null)
+    const errorMsgDob = ref("")
+    const dobRef = ref(null)
     function checkDOB() {
         if (dob.value === "") {
             const msg = "**Please choose your Date of Birth**"
-            showError(error_msg_dob, msg, dob_ref)
+            showError(errorMsgDob, msg, dobRef)
             return false;
         }
-        clearError(error_msg_dob)
+        clearError(errorMsgDob)
         return true;
     }
 
@@ -147,13 +147,13 @@ export const useValidation = () => {
         ref.value.focus()
     }
     return {
-        name, error_msg_name, name_ref, checkName,
-        email, error_msg_email, email_ref, checkEmail,
-        error_msg_password, password, password_ref, checkPassword,
-        confirmPassword, error_msg_confirmPassword, confirmPassword_ref, checkConfirmPassword,
-        role, error_msg_role, role_ref, checkRole,
-        gender, error_msg_gender, gender_ref, checkGender,
-        age, error_msg_age, age_ref, checkAge,
-        dob, error_msg_dob, dob_ref, checkDOB
+        name, errorMsgName, nameRef, checkName,
+        email, errorMsgEmail, emailRef, checkEmail,
+        errorMsgPassword, password, passwordRef, checkPassword,
+        confirmPassword, errorMsgConfirmPassword, confirmPasswordRef, checkConfirmPassword,
+        role, errorMsgRole, roleRef, checkRole,
+        gender, errorMsgGender, genderRef, checkGender,
+        age, errorMsgAge, ageref, checkAge,
+        dob, errorMsgDob, dobRef, checkDOB
     }
 }

@@ -9,13 +9,13 @@
                 <div class="form">
                     <div class="row">
                         <label for="email">{{ $t('userForm.email') }} <span class="required-field">*</span></label>
-                        <input type="email" v-model="email" id="email" @input="checkEmail" ref="email_ref">
-                        <div v-show="error_msg_email" ref="email_error" class="error">{{ error_msg_email }}</div>
+                        <input type="email" v-model="email" id="email" @input="checkEmail" ref="emailRef">
+                        <div v-show="errorMsgEmail" class="error">{{ errorMsgEmail }}</div>
                     </div>
                     <div class="row row-password">
                         <label for="password">{{ $t('userForm.password') }} <span class="required-field">*</span></label>
-                        <input type="password" v-model="password" id="password" @input="checkPassword" ref="password_ref">
-                        <div v-show="error_msg_password" class="error">{{ error_msg_password }}</div>
+                        <input type="password" v-model="password" id="password" @input="checkPassword" ref="passwordRef">
+                        <div v-show="errorMsgPassword" class="error">{{ errorMsgPassword }}</div>
                     </div>
                     <div class="row row-button">
                         <button @click.prevent="login()" class="submit">{{ $t('userForm.login') }}</button>
@@ -37,8 +37,8 @@ import { useUserStore } from '../stores/user'
 const userStore = useUserStore()
 import { useValidation } from '../composables/useValidation';
 
-const { email, error_msg_email, email_ref, checkEmail,
-    error_msg_password, password, password_ref, checkPassword } = useValidation()
+const { email, errorMsgEmail, emailRef, checkEmail,
+    errorMsgPassword, password, passwordRef, checkPassword } = useValidation()
 
 
 function login() {

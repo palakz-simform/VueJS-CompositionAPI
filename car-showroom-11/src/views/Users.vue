@@ -46,8 +46,8 @@
 
 <script setup>
 import { onMounted } from 'vue';
-import { useUserStore } from '../stores/user';
-import { useCapitalize } from '../composables/useCapitalize'
+import { useUserStore } from '@/stores/user';
+import { useCapitalize } from '@/composables/useCapitalize'
 const userStore = useUserStore()
 const usersList = userStore.usersInfo
 const { formattedString } = useCapitalize()

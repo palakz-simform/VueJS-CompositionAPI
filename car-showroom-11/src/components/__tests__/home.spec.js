@@ -12,7 +12,7 @@ describe('Home.vue', () => {
     test('renders list of cars', async () => {
         const carStore = useCarStore()
         const res = await axios.get(`https://testapi.io/api/dartya/resource/cardata`)
-        const cars = carStore.cars_info = await res.data.data
+        const cars = carStore.carsInfo = await res.data.data
         const car_length = cars.length
 
         const component = shallowMount(Home, {

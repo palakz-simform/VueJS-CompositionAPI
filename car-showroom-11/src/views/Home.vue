@@ -16,11 +16,11 @@
         </transition>
 
         <!-- gallery-card.vue component -->
-        <div v-if="carStore.cars_info == ''" class="loader"></div>
+        <div v-if="carStore.carsInfo == ''" class="loader"></div>
         <div class="car-content" v-else>
             <transition-group class="car-card" name="car-card" tag="div" @before-enter="beforeEnter" @enter="enter"
                 @before-leave="beforeLeave" @leave="leave" appear>
-                <div v-for="(item, index) in carStore.cars_info" :key="item.id" :data-index="index">
+                <div v-for="(item, index) in carStore.carsInfo" :key="item.id" :data-index="index">
                     <GalleryCard :id="item.id" :name="item.name" :image="item.image" :description="item.details"
                         :price="item.price" />
                 </div>
@@ -30,11 +30,11 @@
 </template>
 
 <script setup>
-import CarForm from "../components/CarForm.vue";
-import GalleryCard from "../components/GalleryCard.vue";
-import { useCarStore } from "../stores/car";
+import CarForm from "@/components/CarForm.vue";
+import GalleryCard from "@/components/GalleryCard.vue";
+import { useCarStore } from "@/stores/car";
+import { onMounted } from "vue";
 import gsap from 'gsap'
-import { onMounted, ref } from "vue";
 
 const carStore = useCarStore()
 onMounted(() => {

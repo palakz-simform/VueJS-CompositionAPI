@@ -30,7 +30,7 @@
 
 <script setup>
 
-import { useCarStore } from '../stores/car'
+import { useCarStore } from '@/stores/car'
 import { useRouter, useRoute } from 'vue-router'
 import { onMounted, onBeforeUnmount } from 'vue'
 const carStore = useCarStore()
@@ -41,7 +41,7 @@ onMounted(() => {
 })
 const home = () => {
     router.push({
-        name: 'home'
+        name: 'Home'
     })
 }
 onBeforeUnmount(() => {

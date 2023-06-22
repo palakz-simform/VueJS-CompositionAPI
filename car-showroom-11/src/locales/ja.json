@@ -3,9 +3,8 @@
         "app-name": "カーギャラリー",
         "home": "ホーム",
         "logout": "ログアウト",
-        "users": "  ユーザー"    
-    }, 
-  
+        "users": "  ユーザー"
+    },
     "home":{
         "addCar" : "車を追加",
         "info": "情報"

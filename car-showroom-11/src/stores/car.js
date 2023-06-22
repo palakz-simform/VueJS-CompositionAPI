@@ -6,14 +6,14 @@ axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getIte
 import Swal from 'sweetalert2'
 export const useCarStore = defineStore('car', () => {
 
-    const cars_info = reactive([])
+    const carsInfo = reactive([])
     const showModal = ref(false)
     const addForm = ref(false)
     const cardata = reactive({})
     const carDetail = reactive({})
 
     const carCardInfo = computed(() => {
-        return cars_info
+        return carsInfo
     })
     const carDetailInfo = computed(() => {
         return carDetail
@@ -125,7 +125,7 @@ export const useCarStore = defineStore('car', () => {
     // fetching data
     async function getData() {
         const response = await axios.get('cardata')
-        cars_info.splice(0, cars_info.length, ...response.data.data)
+        carsInfo.splice(0, carsInfo.length, ...response.data.data)
     }
 
     function getCarDetail(id) {
@@ -138,6 +138,6 @@ export const useCarStore = defineStore('car', () => {
         })
     }
     return {
-        cars_info, showModal, addForm, cardata, carDetail, carCardInfo, carDetailInfo, getData, addCar, setdata, showEdit, editCarData, deleteCar, getCarDetail
+        carsInfo, showModal, addForm, cardata, carDetail, carCardInfo, carDetailInfo, getData, addCar, setdata, showEdit, editCarData, deleteCar, getCarDetail
     }
 })

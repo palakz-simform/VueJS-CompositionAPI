@@ -2,22 +2,22 @@
     <div class="title">
         <div class="nav">
             <div>
-                <RouterLink :to="{ name: 'home' }" class="nav-heading">
+                <RouterLink :to="{ name: 'Home' }" class="nav-heading">
                     <img src="../assets/car-logo.png" alt="logo" />
                     <h1 class="logo-name">{{ $t("nav.app-name") }}</h1>
                 </RouterLink>
             </div>
             <div>
                 <span v-if="userStore.login == 'true'">
-                    <RouterLink class="link" :to="{ name: 'home' }">{{ $t('nav.home') }}</RouterLink>
+                    <RouterLink class="link" :to="{ name: 'Home' }">{{ $t('nav.home') }}</RouterLink>
                     <span v-if="formattedString(userStore.role) == 'Admin'">
-                        <RouterLink class="link" :to="{ name: 'users' }">{{ $t('nav.users') }}</RouterLink>
+                        <RouterLink class="link" :to="{ name: 'Users' }">{{ $t('nav.users') }}</RouterLink>
                     </span>
                     <a class="link" @click="userStore.logout">{{ $t('nav.logout') }}</a>
                 </span>
                 <template v-else>
-                    <RouterLink class="link" :to="{ name: 'login' }">{{ $t('userForm.login') }}</RouterLink>
-                    <RouterLink class="link link-register" :to="{ name: 'register' }">{{ $t('userForm.register') }}
+                    <RouterLink class="link" :to="{ name: 'Login' }">{{ $t('userForm.login') }}</RouterLink>
+                    <RouterLink class="link link-register" :to="{ name: 'Register' }">{{ $t('userForm.register') }}
                     </RouterLink>
                 </template>
                 <span>
@@ -34,9 +34,9 @@
 </template>
 
 <script setup>
-import { useUserStore } from "../stores/user";
+import { useUserStore } from "@/stores/user";
+import { useCapitalize } from '@/composables/useCapitalize'
 const userStore = useUserStore()
-import { useCapitalize } from '../composables/useCapitalize'
 const { formattedString } = useCapitalize()
 </script>
 

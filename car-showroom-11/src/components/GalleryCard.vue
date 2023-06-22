@@ -14,7 +14,7 @@
             <button class="car-edit-btn" @click="carStore.showEdit(getCarData())">
                 <i class="fa-solid fa-pen"></i>
             </button>
-            <RouterLink :to="{ name: 'carDetail', params: { id: id } }"><button class="button-info">{{ $t('home.info')
+            <RouterLink :to="{ name: 'CarDetail', params: { id: id } }"><button class="button-info">{{ $t('home.info')
             }}</button>
             </RouterLink>
             <button class="car-delete-btn" @click="carStore.deleteCar(getCarData())">
@@ -26,7 +26,7 @@
 
 <script setup>
 import { RouterLink } from "vue-router";
-import { useCarStore } from "../stores/car";
+import { useCarStore } from "@/stores/car";
 const carStore = useCarStore()
 const props = defineProps([
     "id",

@@ -27,7 +27,13 @@ export const useUserStore = defineStore('user', () => {
             if (res.status == 200) {
                 const userData = data.find(udata => udata.email == user.email)
                 if (!userData) {
-                    alert("Invalid Email!! Please try again")
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Invalid Email!! Please Try again',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                     return false
                 }
                 else {
@@ -55,17 +61,29 @@ export const useUserStore = defineStore('user', () => {
                             localStorage.setItem('role', role.value)
                         }
                         router.push({
-                            name: 'home'
+                            name: 'Home'
                         })
                     }
                     else {
-                        alert("Invalid Password!! Please try again")
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: 'Invalid Password!! Please Try again',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     }
                 }
             }
         }
         catch (err) {
-            alert("Error occured!! Please try again")
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Error occured!! Please try again',
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
     async function registerUser(data) {
@@ -88,12 +106,18 @@ export const useUserStore = defineStore('user', () => {
                     timer: 1500
                 })
                 router.push({
-                    name: 'login'
+                    name: 'Login'
                 })
             }
         }
         catch (error) {
-            alert("Error occured! Please try again")
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Error occured!! Please try again',
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
     function logout() {
@@ -124,7 +148,7 @@ export const useUserStore = defineStore('user', () => {
                         localStorage.setItem('role', "")
                         login.value = "false"
                         router.push({
-                            name: 'login'
+                            name: 'Login'
                         })
                     }
                 })

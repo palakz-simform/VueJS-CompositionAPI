@@ -3,7 +3,7 @@
         "app-name": "Car Gallery",
         "home": "Home",
         "logout": "Logout",
-        "users": "Users"    
+        "users": "Users"
     },
    "home":{
         "addCar" : "Add Car",

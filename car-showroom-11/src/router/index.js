@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import axios from 'axios'
+import { useUserStore } from "../stores/user";
 
 const routes = [{
   path: '/',
-  name: 'home',
+  name: 'Home',
   component: () => import("../views/Home.vue"),
   meta: {
     requiresAuth: true
@@ -11,22 +12,25 @@ const routes = [{
 },
 {
   path: '/login',
-  name: 'login',
+  name: 'Login',
   component: () => import("../views/LoginPage.vue")
 },
 {
   path: '/register',
-  name: 'register',
+  name: 'Register',
   component: () => import("../views/RegisterPage.vue")
 },
 {
   path: '/users',
-  name: 'users',
-  component: () => import("../views/Users.vue")
+  name: 'Users',
+  component: () => import("../views/Users.vue"),
+  meta: {
+    requiresAuth: true
+  }
 },
 {
   path: '/details/:id(\\d+)',
-  name: 'carDetail',
+  name: 'CarDetail',
   component: () => import("../views/CarDetail.vue"),
   meta: {
     requiresAuth: true
@@ -67,17 +71,12 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  const userStore = useUserStore()
   if (!to.meta.requiresAuth) {
-    next();
-    return
-  }
-  const loggedIn = localStorage.getItem("loggedIn");
-
-  if (loggedIn == 'true') {
-    next();
+    (userStore.login == 'true' && (to.fullPath == '/login' || to.fullPath == '/register')) ? next({ name: "Home" }) : next()
   }
   else {
-    next({ name: "login" })
+    userStore.login == 'true' ? next() : next({ name: "Login" })
   }
 });
 

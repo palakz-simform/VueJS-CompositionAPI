@@ -3,9 +3,8 @@
         "app-name": "Galerie de voitures",
         "home": "Maison",
         "logout": "Se déconnecter",
-        "users": "utilisatrices"    
+        "users": "utilisatrices"
     },
-   
     "home":{
         "addCar" : "Ajouter une voiture",
         "info": "Info"

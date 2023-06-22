@@ -8,11 +8,11 @@ describe("userStore", () => {
     });
     test("User authentication", async () => {
         const carStore = useCarStore()
-        expect(carStore.cars_info).toHaveLength(0)
+        expect(carStore.carsInfo).toHaveLength(0)
         await carStore.getData()
         const res = await axios.get(`https://testapi.io/api/dartya/resource/cardata`)
-        const cars = carStore.cars_info = await res.data.data
+        const cars = carStore.carsInfo = await res.data.data
         const car_length = cars.length
-        expect(carStore.cars_info).toHaveLength(car_length)
+        expect(carStore.carsInfo).toHaveLength(car_length)
     })
 })

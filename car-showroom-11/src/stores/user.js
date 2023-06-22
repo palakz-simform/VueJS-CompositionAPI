@@ -163,7 +163,13 @@ export const useUserStore = defineStore('user', () => {
             users.value = await res.data.data
         }
         catch (err) {
-            alert("Error occured!! Please try again")
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Error occured!! Please try again',
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
     return {

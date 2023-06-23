@@ -1,0 +1,59 @@
+{
+    "nav":{
+        "app-name": "Car Gallery",
+        "home": "Home",
+        "logout": "Logout",
+        "users": "Users"
+    },
+   "home":{
+        "addCar" : "Add Car",
+        "info": "Info"
+   },
+   "user":{
+        "users_list":"Users List",
+        "name":"Name",
+        "email":"Email",
+        "role":"Role",
+        "gender":"Gender",
+        "age":"Age",
+        "dob": "Date of Birth"
+   },
+    "car-form":{
+        "addCar": "Add Car",
+        "editCar": "Edit Car",
+        "submit": "Submit",
+        "edit": "Edit",
+        "name": "Name",
+        "image": "Image",
+        "description": "Description",
+        "price": "Price"
+    },
+    "detail":{
+        "back": "Back",
+        "description": "Description of Car",
+        "price":"Price of Car"
+    },
+    "userForm":{
+        "login-form": "Login Form",
+        "register-form": "Registration Form",
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmpass": "Confirm Password",
+        "role": "Role",
+        "admin": "Admin",
+        "employee": "Employee",
+        "customer": "Customer",
+        "gender": "Gender",
+        "male": "Male",
+        "female": "Female",
+        "age": "Age",
+        "dob": "Date of Birth",
+        "login": "Login",
+        "register": "Register",
+        "notMember":"Not a member",
+        "regHere": "Register Here",
+        "alreadyMember": "Already a Member",
+        "loginHere" : "Login Here"
+    }      
+}

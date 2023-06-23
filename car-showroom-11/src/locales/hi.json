@@ -1,0 +1,59 @@
+{
+    "nav":{
+        "app-name": "कार गैलरी",
+        "home": "घर",
+        "logout": "लॉग आउट",
+        "users": "उपयोगकर्ताओं"
+    },
+    "home":{
+        "addCar" : "कार जोड़ें",
+        "info": "जानकारी"
+    },
+    "user":{
+        "users_list":"उपयोगकर्ता सूची",
+        "name":"नाम",
+        "email":"ईमेल",
+        "role":"भूमिका",
+        "gender":"लिंग",
+        "age":"आयु",
+        "dob": "जन्मदिन"
+    },
+    "car-form": {
+        "addCar": "कार जोड़ें",
+        "editCar": "कार संपादित करें",
+        "submit": "सबमिट करें",
+        "edit": "संपादित करें",
+        "name": "नाम",
+        "image": "छवि",
+        "description": "विवरण",
+        "price": "मूल्य"
+    },
+    "detail": {
+        "back": "वापस",
+        "description": "कार का विवरण",
+        "price": "कार की कीमत"
+    },   
+    "userForm": {
+        "login-form": "लॉगिन फॉर्म",
+        "register-form": "रजिस्ट्रेशन फॉर्म",
+        "name": "नाम",
+        "email": "ईमेल",
+        "password": "पासवर्ड",
+        "confirmpass": "पासवर्ड की पुष्टि करें",
+        "role": "भूमिका",
+        "admin": "व्यवस्थापक",
+        "employee": "कर्मचारी",
+        "customer": "ग्राहक",
+        "gender": "लिंग",
+        "male": "पुरुष",
+        "female": "महिला",
+        "age": "आयु",
+        "dob": "जन्म तिथि",
+        "login": "लॉगिन",
+        "register": "रजिस्टर",
+        "notMember": "सदस्य नहीं",
+        "regHere": "यहाँ पंजीकरण करें",
+        "alreadyMember": "पहले से ही सदस्य",
+        "loginHere": "यहाँ लॉग इन करें"
+    }
+}

@@ -1,0 +1,60 @@
+{
+    "nav":{
+        "app-name": "カーギャラリー",
+        "home": "ホーム",
+        "logout": "ログアウト",
+        "users": "  ユーザー"
+    },
+    "home":{
+        "addCar" : "車を追加",
+        "info": "情報"
+    },
+
+    "user": {
+        "users_list": "ユーザーリスト",
+        "name": "名前",
+        "email": "メール",
+        "role": "役割",
+        "gender": "性別",
+        "age": "年齢",
+        "dob": "生年月日"
+    },
+    "car-form": {
+        "addCar": "車を追加",
+        "editCar": "車を編集",
+        "submit": "送信",
+        "edit": "編集",
+        "name": "名前",
+        "image": "画像",
+        "description": "説明",
+        "price": "価格"
+    },
+    "detail": {
+        "back": "戻る",
+        "description": "車の説明",
+        "price": "車の価格"
+    },    
+    "userForm": {
+        "login-form": "ログインフォーム",
+        "register-form": "登録フォーム",
+        "name": "名前",
+        "email": "メール",
+        "password": "パスワード",
+        "confirmpass": "パスワードの確認",
+        "role": "役割",
+        "admin": "管理者",
+        "employee": "従業員",
+        "customer": "顧客",
+        "gender": "性別",
+        "male": "男性",
+        "female": "女性",
+        "age": "年齢",
+        "dob": "生年月日",
+        "login": "ログイン",
+        "register": "登録",
+        "notMember": "メンバーではありません",
+        "regHere": "ここで登録する",
+        "alreadyMember": "既にメンバーです",
+        "loginHere": "ここでログインする"
+    }   
+}

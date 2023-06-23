@@ -12,7 +12,7 @@ describe("userStore", () => {
         await carStore.getData()
         const res = await axios.get(`https://testapi.io/api/dartya/resource/cardata`)
         const cars = carStore.carsInfo = await res.data.data
-        const car_length = cars.length
-        expect(carStore.carsInfo).toHaveLength(car_length)
+        const carLength = cars.length
+        expect(carStore.carsInfo).toHaveLength(carLength)
     })
 })

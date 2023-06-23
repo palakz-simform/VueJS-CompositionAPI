@@ -103,6 +103,7 @@ i {
 img {
     width: 500px;
     margin-left: 20px;
+    max-height: 480px;
 }
 
 .title {

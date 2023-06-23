@@ -13,7 +13,7 @@ describe('Home.vue', () => {
         const carStore = useCarStore()
         const res = await axios.get(`https://testapi.io/api/dartya/resource/cardata`)
         const cars = carStore.carsInfo = await res.data.data
-        const car_length = cars.length
+        const carLength = cars.length
 
         const component = shallowMount(Home, {
             global: {
@@ -24,7 +24,7 @@ describe('Home.vue', () => {
         })
 
         const items = component.findAllComponents(GalleryCard)
-        expect(items).toHaveLength(car_length)
+        expect(items).toHaveLength(carLength)
         items.forEach((wrapper, i) => {
             expect(wrapper.props().name).toStrictEqual(cars[i].name)
         })

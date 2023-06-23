@@ -112,7 +112,7 @@ a {
     text-decoration: none;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 900px) {
     .title h1 {
         margin-left: 20px;
     }

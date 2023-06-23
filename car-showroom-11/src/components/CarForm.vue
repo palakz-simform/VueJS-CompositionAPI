@@ -11,26 +11,26 @@
             <div class="form-car">
                 <div class="car-form-row">
                     <label>{{ $t('car-form.name') }} <span class="required-field">*</span></label>
-                    <input type="text" v-model="form.name" ref="name_ref" @input="checkName">
-                    <div v-show="error_msg_name" class="car-error">{{ error_msg_name }}</div>
+                    <input type="text" v-model="form.name" ref="nameRef" @input="checkName">
+                    <div v-show="errorMsgName" class="car-error">{{ errorMsgName }}</div>
                 </div>
                 <div class="car-form-row">
                     <label>{{ $t('car-form.image') }} <span class="required-field">*</span></label>
-                    <input type="url" v-model="form.image" ref="image_ref" @input="checkImage">
-                    <div v-show="error_msg_image" class="car-error">{{ error_msg_image }}</div>
+                    <input type="url" v-model="form.image" ref="imageRef" @input="checkImage">
+                    <div v-show="errorMsgImage" class="car-error">{{ errorMsgImage }}</div>
                 </div>
                 <div class="car-form-row">
                     <label>{{ $t('car-form.description') }} <span class="required-field">*</span></label>
-                    <textarea v-model="form.description" ref="description_ref" @input="checkDescription"></textarea>
-                    <div v-show="error_msg_description" class="car-error">{{ error_msg_description }}</div>
+                    <textarea v-model="form.description" ref="descriptionRef" @input="checkDescription"></textarea>
+                    <div v-show="errorMsgDescription" class="car-error">{{ errorMsgDescription }}</div>
                 </div>
                 <div class="car-form-row">
                     <label>{{ $t('car-form.price') }} <span class="required-field">*</span></label>
-                    <input type="number" v-model.number="form.price" ref="price_ref"
+                    <input type="number" v-model.number="form.price" ref="priceRef"
                         onkeydown="return (event.keyCode !== 107 && event.keyCode !== 109 && event.keyCode !== 69);"
                         @input="checkPrice">
                     <!-- Prevent the user from pressing key : +,-,e -->
-                    <div v-show="error_msg_price" class="car-error">{{ error_msg_price }}</div>
+                    <div v-show="errorMsgPrice" class="car-error">{{ errorMsgPrice }}</div>
                 </div>
                 <button @click="submit" class="submit-car">{{ carStore.addForm === true ? $t('car-form.submit') :
                     $t('car-form.edit') }}</button>
@@ -68,26 +68,26 @@ else {
     form.price = carStore.cardata.price
 }
 
-const error_msg_name = ref("")
-const name_ref = ref(null)
+const errorMsgName = ref("")
+const nameRef = ref(null)
 function checkName() {
     // Checking that name is not empty and is a string
     if (form.name === "" || typeof form.name != 'string') {
         const msg = "**Please enter name**"
-        showError(error_msg_name, msg, name_ref)
+        showError(errorMsgName, msg, nameRef)
         return false
     }
-    clearError(error_msg_name)
+    clearError(errorMsgName)
     return true
 }
 
-const error_msg_image = ref("")
-const image_ref = ref(null)
+const errorMsgImage = ref("")
+const imageRef = ref(null)
 function checkImage() {
     // Checking that image is not empty 
     if (form.image === "") {
         const msg = "**Please enter image URL**"
-        showError(error_msg_image, msg, image_ref)
+        showError(errorMsgImage, msg, imageRef)
         return false
     }
     // If image is not empty, checking that the input is an URL
@@ -96,30 +96,30 @@ function checkImage() {
         const regex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
         if (!regex.test(url)) {
             const msg = "**Please enter valid image URL**"
-            showError(error_msg_image, msg, image_ref)
+            showError(errorMsgImage, msg, imageRef)
             return false
         }
-        clearError(error_msg_image)
+        clearError(errorMsgImage)
         return true
     }
 }
 
-const error_msg_description = ref("")
-const description_ref = ref(null)
+const errorMsgDescription = ref("")
+const descriptionRef = ref(null)
 function checkDescription() {
     // Checking that the description is not empty
     if (form.description === "") {
         const msg = "**Please enter description**"
-        showError(error_msg_description, msg, description_ref)
+        showError(errorMsgDescription, msg, descriptionRef)
         return false
     }
     // If the description is not empty, checking that the no. of characters is between 30-120
     else if (form.description.length < 30 || form.description.length > 120 || typeof form.description != 'string') {
         const msg = "**Description must be 30-120 characters long**"
-        showError(error_msg_description, msg, description_ref)
+        showError(errorMsgDescription, msg, descriptionRef)
         return false
     }
-    clearError(error_msg_description)
+    clearError(errorMsgDescription)
     return true
 }
 
@@ -140,16 +140,16 @@ async function submit() {
     }
 }
 
-const error_msg_price = ref("")
-const price_ref = ref(null)
+const errorMsgPrice = ref("")
+const priceRef = ref(null)
 function checkPrice() {
     // checking that the price is not empty
     if (form.price === "") {
         const msg = "**Please enter price**"
-        showError(error_msg_price, msg, price_ref)
+        showError(errorMsgPrice, msg, priceRef)
         return false
     }
-    clearError(error_msg_price)
+    clearError(errorMsgPrice)
     return true
 }
 function showModalx() {
